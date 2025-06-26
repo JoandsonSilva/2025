@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="number" id="n1">
+    <input type="number" id="n2"><br><br>
+    
+    <button onclick="somar()">+</button>
+    <button onclick="subtrair()">-</button>
+    <button onclick="multiplicar()">*</button>
+    <button onclick="dividir()">/</button>
+    
+    <p id="resultado"></p>
+     <script>
+      function somar() {
+        let n1 = Number(document.getElementById('n1').value);
+        let n2 = Number(document.getElementById('n2').value);
+        document.getElementById('resultado').innerText = "Resultado: " + (n1 + n2);
+      }
+    
+      function subtrair() {
+        let n1 = Number(document.getElementById('n1').value);
+        let n2 = Number(document.getElementById('n2').value);
+        document.getElementById('resultado').innerText = "Resultado: " + (n1 - n2);
+      }
+    
+      function multiplicar() {
+        let n1 = Number(document.getElementById('n1').value);
+        let n2 = Number(document.getElementById('n2').value);
+        document.getElementById('resultado').innerText = "Resultado: " + (n1 * n2);
+      }
+    
+      function dividir() {
+        let n1 = Number(document.getElementById('n1').value);
+        let n2 = Number(document.getElementById('n2').value);
+        if (n2 === 0) {
+          alert("Não é possível dividir por zero!");
+        } else {
+          document.getElementById('resultado').innerText = "Resultado: " + (n1 / n2);
+        }
+      }
+    </script>
+    
+
+
+
+    <p>Desafio: Peça ao usuário que insira o salário bruto e o percentual de desconto do INSS (ex: 11%).
+      Calcule e mostre o salário líquido.</p>
+</body>
+</html>

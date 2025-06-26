@@ -1,0 +1,74 @@
+
+<!-- Missão 2: Campo com sol girando -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Missão 2 - Sol Animado</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(skyblue, lightgreen);
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sol {
+      width: 100px;
+      height: 100px;
+      background:linear-gradient(yellow, rgba(213, 178, 3, 0.749)) ;
+      border-radius: 50%;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      animation: girar 10s linear infinite;
+    }
+    @keyframes girar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+   .mountain-container {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  overflow: hidden; /* Para garantir que os picos não ultrapassem o contêiner */
+}
+
+.mountain-base {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(to bottom, #8B4513, #A0522D); /* Marrom escuro para marrom claro */
+}
+
+.mountain-peak {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 75px solid #D2B48C; /* Bege claro */
+}
+
+.peak-1 {
+  left: 25px;
+  bottom: 50%;
+}
+
+.peak-2 {
+  right: 25px;
+  bottom: 50%;
+}
+  </style>
+</head>
+<body>
+  <div class="sol"></div>
+  <div class="mountain-container">
+  <div class="mountain-base"></div>
+  <div class="mountain-peak peak-1"></div>
+  <div class="mountain-peak peak-2"></div>
+</div>
+</body>
+</html>

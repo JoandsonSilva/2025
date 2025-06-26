@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matriz 9-Box - Avaliação DTEC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    .grid9box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .quadrante {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 14px;
+      min-height: 150px;
+      color: white;
+      font-size: 14px;
+    }
+    .quadrante h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #aadfff;
+    }
+    .aluno-box {
+      margin-bottom: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      padding: 6px;
+    }
+    #filtroAluno {
+      margin-top: 20px;
+      padding: 10px;
+      width: 300px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-header">
+    <a href="index.html">Controle de Avaliação</a>
+    <a href="Relatório de Produção.html">Relatório</a>
+    <a href="matriz.html">Matriz Bloom</a>
+    <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+    <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <h1>Matriz 9-Box - Avaliação de Desempenho</h1>
+
+  <input type="text" id="filtroAluno" placeholder="Buscar aluno...">
+
+  <div class="grid9box" id="grade">
+    <!-- Quadrantes serão inseridos via JavaScript -->
+  </div>
+
+  <script>
+    const dadosAlunos = [
+      { nome: "Ana Clara Silva", engajamento: "Alto", desempenho: "Médio", detalhes: "AV1: 7 | AV2: 6 | Constância: 9" },
+      { nome: "João Pedro Lima", engajamento: "Médio", desempenho: "Baixo", detalhes: "AV1: 4 | AV2: 5 | Participação: 6" },
+      { nome: "Carla Menezes", engajamento: "Alto", desempenho: "Alto", detalhes: "AV1: 9 | AV2: 9 | Projeto: 10" },
+      { nome: "Vitor Hugo Santos", engajamento: "Baixo", desempenho: "Alto", detalhes: "AV1: 8 | AV2: 9 | Participação: 4" },
+      { nome: "Bruno Almeida", engajamento: "Médio", desempenho: "Médio", detalhes: "AV1: 6 | AV2: 6 | Equipe: 7" },
+      { nome: "Mariana Alves", engajamento: "Baixo", desempenho: "Baixo", detalhes: "AV1: 3 | AV2: 2 | Projeto: 4" }
+    ];
+
+    const quadrantes = {
+      'Alto-Alto': { titulo: "1. Potencial máximo", alunos: [] },
+      'Alto-Médio': { titulo: "2. Engajado, precisa de reforço técnico", alunos: [] },
+      'Alto-Baixo': { titulo: "3. Persistente, sem domínio técnico", alunos: [] },
+      'Médio-Alto': { titulo: "4. Promissor, mas instável", alunos: [] },
+      'Médio-Médio': { titulo: "5. Desenvolvimento equilibrado", alunos: [] },
+      'Médio-Baixo': { titulo: "6. Participa, sem avanços técnicos", alunos: [] },
+      'Baixo-Alto': { titulo: "7. Talento técnico, pouco engajamento", alunos: [] },
+      'Baixo-Médio': { titulo: "8. Apoio socioemocional", alunos: [] },
+      'Baixo-Baixo': { titulo: "9. Alerta pedagógico", alunos: [] }
+    };
+
+    dadosAlunos.forEach(aluno => {
+      const chave = `${aluno.engajamento}-${aluno.desempenho}`;
+      if (quadrantes[chave]) {
+        quadrantes[chave].alunos.push(aluno);
+      }
+    });
+
+    function montarQuadrantes(filtro = '') {
+      const grid = document.getElementById('grade');
+      grid.innerHTML = '';
+
+      Object.entries(quadrantes).forEach(([chave, info]) => {
+        const div = document.createElement('div');
+        div.className = 'quadrante';
+        div.innerHTML = `<h3>${info.titulo}</h3>`;
+
+        info.alunos.filter(a => a.nome.toLowerCase().includes(filtro)).forEach(aluno => {
+          const aBox = document.createElement('div');
+          aBox.className = 'aluno-box';
+          aBox.innerHTML = `<strong>${aluno.nome}</strong><br><small>${aluno.detalhes}</small>`;
+          div.appendChild(aBox);
+        });
+
+        grid.appendChild(div);
+      });
+    }
+
+    document.getElementById('filtroAluno').addEventListener('input', e => {
+      const termo = e.target.value.toLowerCase();
+      montarQuadrantes(termo);
+    });
+
+    montarQuadrantes();
+  </script>
+</body>
+</html>

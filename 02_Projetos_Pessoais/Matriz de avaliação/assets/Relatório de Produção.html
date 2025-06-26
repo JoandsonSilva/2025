@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório de Produção</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="nav-header">
+  <a href="index.html">Controle de Avaliação</a>
+  <a href="Relatório de Produção.html">Relatório</a>
+  <a href="matriz.html">Matriz Bloom</a>
+  <a href="#">Execução do Verbo</a>
+  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+  <a href="login.html">Login</a>
+</div>
+
+  <h1>Relatório de Produção</h1>
+
+  <input type="text" id="filtro" placeholder="Buscar aluno pelo nome...">
+  <button onclick="exportarCSV()">📄 Exportar como CSV</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Aluno</th>
+        <th>Aulas</th>
+        <th>Miniprojetos</th>
+        <th>Projeto Final</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-alunos"></tbody>
+  </table>
+
+  <div id="lista-relatorio"></div>
+
+  <script src="alunos.js"></script>
+  <script src="interacoes.js"></script>
+  <script>
+    function gerarCelulaDetalhada(index, tipo, totalItens) {
+      let total = 0;
+      let conteudo = '';
+
+      for (let i = 1; i <= totalItens; i++) {
+        const id = `aluno${index}_${tipo}${i}`;
+        const check = localStorage.getItem(id + '_check') === 'true';
+        const valor = parseFloat(localStorage.getItem(id + '_valor')) || 0;
+        const comentario = localStorage.getItem(id + '_comentario') || '';
+
+        if (check) {
+          total += valor;
+        }
+
+        conteudo += `<div><strong>${tipo}${i}:</strong> ${check ? valor : '—'}`;
+        if (comentario) {
+          conteudo += `<div class="comentario">${comentario}</div>`;
+        }
+        conteudo += '</div>';
+      }
+      return { html: conteudo, total };
+    }
+
+    function montarTabela() {
+      const corpo = document.getElementById('tabela-alunos');
+      corpo.innerHTML = '';
+      const termo = document.getElementById('filtro').value.toLowerCase();
+
+      alunos.forEach((nome, index) => {
+        if (!nome.toLowerCase().includes(termo)) return;
+
+        const tr = document.createElement('tr');
+
+        const tdNome = document.createElement('td');
+        tdNome.textContent = nome;
+        tr.appendChild(tdNome);
+
+        const aula = gerarCelulaDetalhada(index, 'aula', 8);
+        const mini = gerarCelulaDetalhada(index, 'mini', 3);
+        const notaFinal = parseFloat(localStorage.getItem(`aluno${index}_final_nota`) || 0);
+
+        const tdAula = document.createElement('td');
+        tdAula.innerHTML = aula.html;
+        tr.appendChild(tdAula);
+
+        const tdMini = document.createElement('td');
+        tdMini.innerHTML = mini.html;
+        tr.appendChild(tdMini);
+
+        const tdProj = document.createElement('td');
+        tdProj.textContent = notaFinal;
+        tr.appendChild(tdProj);
+
+        const tdTotal = document.createElement('td');
+        tdTotal.textContent = (aula.total + mini.total + notaFinal).toFixed(1);
+        tr.appendChild(tdTotal);
+
+        corpo.appendChild(tr);
+      });
+    }
+
+    function exportarCSV() {
+      let csv = "Aluno,Aulas,Miniprojetos,Projeto Final,Total\n";
+
+      alunos.forEach((nome, index) => {
+        let totalAula = 0, totalMini = 0;
+        for (let i = 1; i <= 8; i++) {
+          const id = `aluno${index}_aula${i}`;
+          const check = localStorage.getItem(id + '_check') === 'true';
+          const valor = parseFloat(localStorage.getItem(id + '_valor')) || 0;
+          if (check) totalAula += valor;
+        }
+        for (let i = 1; i <= 3; i++) {
+          const id = `aluno${index}_mini${i}`;
+          const check = localStorage.getItem(id + '_check') === 'true';
+          const valor = parseFloat(localStorage.getItem(id + '_valor')) || 0;
+          if (check) totalMini += valor;
+        }
+        const notaFinal = parseFloat(localStorage.getItem(`aluno${index}_final_nota`) || 0);
+        const total = totalAula + totalMini + notaFinal;
+        csv += `"${nome}",${totalAula.toFixed(1)},${totalMini.toFixed(1)},${notaFinal.toFixed(1)},${total.toFixed(1)}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'avaliacao_alunos.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('filtro').addEventListener('input', montarTabela);
+      montarTabela();
+    });
+  </script>
+</body>
+</html>

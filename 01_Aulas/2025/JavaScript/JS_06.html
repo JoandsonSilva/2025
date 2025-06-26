@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+   <p>Enunciado: Crie dois inputs numéricos e um botão. Quando clicado, deve exibir a soma dos dois números.</p>
+
+   
+    <input type="number" id="n1" placeholder="Digite o valor de desconto">
+    <button onclick="conta()">Enviar</button>
+<script>
+  function conta() {
+    let produto = 100;
+    let desconto = Number(document.getElementById("n1").value);
+    alert("O valor com desconto é : " + (produto - produto * desconto / 100 )); }
+
+      
+</script>
+
+
+
+  <!-- Ex. 2 – Calculadora de Desconto
+    Um produto custa R$100. Faça um script que, ao digitar um percentual de desconto (ex: 10), calcule o valor final.-->
+</body>
+</html>

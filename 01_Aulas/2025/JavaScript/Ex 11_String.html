@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício de String </title>
+</head>
+<body>
+
+    <h2>Digite seu nome</h2>
+    <input type="text" id="nameInput">
+    <button id="greetButton">Saudar</button>
+
+    <p id="greeting"></p>  
+
+    <script>
+        document.getElementById('greetButton').onclick = function() {
+            let userName = document.getElementById('nameInput').value;
+            let greeting = "Olá, " + userName + "! Seja bem-vindo(a)!";
+
+            document.getElementById('greeting').innerText = greeting;
+        }
+    </script>
+
+</body>
+</html>

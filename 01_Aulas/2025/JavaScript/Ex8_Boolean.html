@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+       <title>Exercício de Boolean </title>
+</head>
+<body>
+
+    <h2>Você gosta de Programação?</h2>
+    <button id="yesButton">Sim</button>
+    <button id="noButton">Não</button>
+
+    <p id="resposta"> </p>
+
+    <script>
+        document.getElementById('yesButton').onclick = function() {
+            let gostoProgramacao = true;
+            document.getElementById('resposta').innerText = "Você respondeu: " + gostoProgramacao;
+        }
+
+        document.getElementById('noButton').onclick = function() {
+            let gostoProgramacao = false;
+            document.getElementById('resposta').innerText = "Você respondeu: " + gostoProgramacao;
+        }
+    </script>
+
+</body>
+</html>

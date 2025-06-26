@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+<h2> Enunciado:  Negação</h2>
+<p>Crie um botão que diga se a caixa de confirmação (checkbox) está marcada ou não, usando (!).</p>
+
+<input type="checkbox" id="termos"> Aceito os termos
+<button onclick="verificar()">Verificar</button>
+
+<script>
+  function verificar() {
+    let termos = document.getElementById("termos").checked;
+    if (!termos) {
+      alert("Você precisa aceitar os termos!");
+    } else {
+      alert("Obrigado!");
+    }
+  }
+</script>
+Login simples
+Peça um usuário e senha e valide com dados fixos (admin, 1234).
+Só permita acesso se ambos estiverem corretos (&&).
+Sinais para utilizar: === IGUAL e &&
+
+</body>
+</html>
+

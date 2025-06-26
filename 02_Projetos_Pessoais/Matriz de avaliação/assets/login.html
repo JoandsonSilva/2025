@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="styleLogin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="nav-header">
+  <a href="index.html">Controle de Avaliação</a>
+  <a href="Relatório de Produção.html">Relatório</a>
+  <a href="matriz.html">Matriz Bloom</a>
+  <a href="#">Execução do Verbo</a>
+  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+  <a href="login.html">Login</a>
+</div>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo">
+        <img src="https://img.icons8.com/ios-filled/100/ffffff/camera.png" alt="camera icon"/>
+      </div>
+      <form id="login-form">
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Username" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password" required />
+        </div>
+        <div class="options">
+          <label><input type="checkbox" id="remember"> Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit">LOGIN</button>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+<script>
+document.getElementById('login-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const username = document.getElementById('username').value;
+  const remember = document.getElementById('remember').checked;
+
+  if (remember && username.trim()) {
+    localStorage.setItem('user', username.trim());
+  }
+
+  // Redireciona após login
+  window.location.href = "index.html";
+});
+
+
+</script>
+</html>

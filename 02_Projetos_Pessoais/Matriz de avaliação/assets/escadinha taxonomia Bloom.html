@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escadinha Taxonomia de Bloom</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    .escada {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .deg {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .deg:hover {
+      transform: scale(1.03);
+    }
+    .deg span {
+      float: right;
+      font-weight: normal;
+    }
+    .Conhecer    { background: #2196f3; }
+    .Compreender { background: #4caf50; }
+    .Aplicar     { background: #ffeb3b; color: #333; }
+    .Analisar    { background: #ff9800; }
+    .Avaliar     { background: #f44336; }
+    .Criar       { background: #9c27b0; }
+
+    .voltar {
+      margin-top: 40px;
+    }
+    #chartContainer {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-header">
+  <a href="index.html">Controle de Avaliação</a>
+  <a href="Relatório de Produção.html">Relatório</a>
+  <a href="matriz.html">Matriz Bloom</a>
+  <a href="execucao_verbo.html">Execução do Verbo</a>
+  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+  <a href="login.html">Login</a>
+</div>
+
+  <h1>Escadinha da Taxonomia de Bloom</h1>
+  <p>Selecione um aluno para visualizar o progresso individual</p>
+
+  <select id="filtroAluno" class="input-padrao">
+    <option value="">-- Selecione um aluno --</option>
+  </select>
+
+  <div class="escada" id="escada"></div>
+
+  <div id="chartContainer">
+    <canvas id="graficoBloom"></canvas>
+  </div>
+
+  <div class="voltar">
+    <a href="painel_diagnostico_bloom.html" class="input-padrao">← Voltar ao Painel</a>
+  </div>
+
+  <script src="alunos.js"></script>
+  <script>
+    const dados = JSON.parse(localStorage.getItem('diagnosticosBloom')) || [];
+    const alunosSelect = document.getElementById('filtroAluno');
+    const escadaDiv = document.getElementById('escada');
+    const ctx = document.getElementById('graficoBloom').getContext('2d');
+
+    let chart;
+
+    alunos.forEach(nome => {
+      const opt = document.createElement('option');
+      opt.value = nome;
+      opt.textContent = nome;
+      alunosSelect.appendChild(opt);
+    });
+
+    alunosSelect.addEventListener('change', () => {
+      const nomeSelecionado = alunosSelect.value;
+      const registrosAluno = dados.filter(r => r.aluno === nomeSelecionado);
+      const contagem = {};
+
+      registrosAluno.forEach(reg => {
+        contagem[reg.nivel] = (contagem[reg.nivel] || 0) + 1;
+      });
+
+      escadaDiv.innerHTML = '';
+      const ordem = ["Conhecer", "Compreender", "Aplicar", "Analisar", "Avaliar", "Criar"];
+
+      ordem.forEach(nivel => {
+        const div = document.createElement('div');
+        div.className = `deg ${nivel}`;
+        div.innerHTML = `${nivel} <span>${contagem[nivel] || 0} registro(s)</span>`;
+        escadaDiv.appendChild(div);
+      });
+
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ordem,
+          datasets: [{
+            label: `Progresso de ${nomeSelecionado}`,
+            data: ordem.map(n => contagem[n] || 0),
+            backgroundColor: [
+              '#2196f3','#4caf50','#ffeb3b','#ff9800','#f44336','#9c27b0'
+            ]
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

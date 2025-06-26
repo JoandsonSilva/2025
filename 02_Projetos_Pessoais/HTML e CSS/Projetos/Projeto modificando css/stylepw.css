@@ -1,0 +1,129 @@
+    
+
+/* Definição de cores */
+:root {
+    --cor-primaria: #1E3A8A; /* Azul escuro */
+    --cor-secundaria: #3B82F6; /* Azul médio */
+    --cor-texto: #F3F4F6; /* Cinza claro */
+    --cor-fundo: #0F172A; /* Azul quase preto */
+    --cor-hover: #60A5FA; /* Azul claro */
+}
+
+/* Reset e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--cor-fundo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Container principal */
+.container {
+    background: linear-gradient(to right, var(--cor-primaria), var(--cor-secundaria));
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+    color: var(--cor-texto);
+}
+
+/* Caixa de login */
+.login-box h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* Grupos de entrada */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--cor-texto);
+    font-size: 1rem;
+    color: var(--cor-texto);
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 1rem;
+    transition: 0.3s;
+    color: var(--cor-texto);
+    opacity: 0.7;
+}
+
+/* Efeito flutuante */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -10px;
+    font-size: 0.8rem;
+    color: var(--cor-hover);
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: var(--cor-hover);
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--cor-secundaria);
+}
+
+/* Links */
+.links {
+    margin-top: 15px;
+}
+
+.links a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 5px;
+    display: inline-block;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: var(--cor-hover);
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+}

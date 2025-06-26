@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Operadores Relacionais
+    Crie dois inputs para números. Mostre qual dos dois é maior ou se são iguais.
+    
+    <input type="number" id="n1">
+    <input type="number" id="n2">
+    <button onclick="operador()">Enviar</button>
+<script>
+    function operador(){
+        n1 = Number(document.getElementById("n1").value);
+        n2 = Number(document.getElementById("n2").value);
+        if (n1 > n2) {
+            alert("O primeiro número é maior!");
+        } else if (n1 < n2) {
+            alert("O segundo número é maior!");
+        } else {
+            alert("Os dois números são iguais.");
+        }
+
+    }
+    </script>
+
+
+</body>
+
+</html>
+
+
+
+
+<!--4 – Enunciado: Posso votar?
+Peça a idade do usuário e diga se ele pode votar (idade >= 16).-->

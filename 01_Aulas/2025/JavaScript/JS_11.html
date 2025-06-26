@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <input type="number" id="salario" placeholder="Salário bruto">
+  <input type="number" id="inss" placeholder="Desconto INSS (%)">
+  <input type="number" id="renda" placeholder="Digite a porcentagem do Imposto de Renda">
+  <button onclick="calcular()">Calcular Salário Líquido</button>
+  <p id="resultado"></p>
+  <script>
+    function calcular() {
+      let salario = Number(document.getElementById('salario').value);
+      let renda = Number(document.getElementById('renda').value)
+      let inss = Number(document.getElementById('inss').value);
+     
+    
+
+      if (salario <= 2000) {
+        salario = (salario + salario*10/100)
+      }
+      else if(salario > 2000 && salario < 4000)  {
+        salario = (salario + salario*7/100)
+      }
+
+      else if(salario > 4000)  {
+        salario = (salario + salario*5/100)
+      }
+
+      let desconto = salario * (inss / 100);
+      let descontoR = salario *(renda / 100)
+      let liquido = salario - desconto - descontoR;
+      
+      document.getElementById('resultado').innerText = "Salário líquido: R$ " + liquido.toFixed(2);    }  </script>
+
+
+
+  <p> Enunciado - Desafio </p>
+  Adicionar o desconto de Imposto de Renda se houver
+  Adicionar um bônus progressivo para o salário de R$ 1.000,00 até R$ 2.000,00 de 10%, de R$ 2.001,00 até R$ 4.000,00 de 7% e salários de R$ 4.001,00 acima um acrescimo de 5%.
+
+
+</body>
+
+</html>

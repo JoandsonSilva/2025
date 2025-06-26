@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Diagnóstico Bloom</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="nav-header">
+    <a href="index.html">Controle de Avaliação</a>
+    <a href="Relatório de Produção.html">Relatório</a>
+    <a href="matriz.html">Matriz Bloom</a>
+    <a href="execucao_verbo.html">Execução do Verbo</a>
+    <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+    <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <div class="container">
+    <h1>Painel de Diagnóstico Bloom</h1>
+
+    <div class="filtros">
+      <input type="text" id="filtroAluno" class="busca" placeholder="Buscar aluno...">
+      <select id="aluno" class="input-padrao"></select>
+    </div>
+
+    <label for="tema">Tema:</label>
+    <select id="tema" class="input-padrao">
+      <option>Conceitos de Desenvolvimento para a Web</option>
+      <option>CSS Avançado e Prático</option>
+      <option>UX – Experiência do Usuário</option>
+      <option>Firebase – Autenticação, Firestore e Hosting</option>
+      <option>Frameworks Front-End (Bootstrap e React)</option>
+    </select>
+
+    <label for="nivel">Nível Bloom:</label>
+    <select id="nivel" class="input-padrao">
+      <option>Conhecer</option>
+      <option>Compreender</option>
+      <option>Aplicar</option>
+      <option>Analisar</option>
+      <option>Avaliar</option>
+      <option>Criar</option>
+    </select>
+
+    <div id="sugestoes">
+      <h3>Sugestões:</h3>
+      <div id="sugestoes-lista"></div>
+    </div>
+
+    <label for="comentario">Comentário adicional:</label>
+    <textarea id="comentario" rows="4" class="input-padrao"></textarea>
+
+    <div class="bloco">
+      <h4>Pergunta Norteadora:</h4>
+      <p id="perguntaBloom"></p>
+    </div>
+
+    <div class="bloco">
+      <h4>Dica de Progresso:</h4>
+      <p id="dicaProgresso"></p>
+    </div>
+
+    <button onclick="salvarRegistro()">Salvar Diagnóstico</button>
+
+    <hr>
+
+    <h2>Linha do Tempo de Registros</h2>
+    <label for="filtroTema">Filtrar por Tema:</label>
+    <select id="filtroTema" class="input-padrao" style="margin-bottom: 20px;">
+      <option value="">Todos os Temas</option>
+      <option>Conceitos de Desenvolvimento para a Web</option>
+      <option>CSS Avançado e Prático</option>
+      <option>UX – Experiência do Usuário</option>
+      <option>Firebase – Autenticação, Firestore e Hosting</option>
+      <option>Frameworks Front-End (Bootstrap e React)</option>
+    </select>
+    <div id="historico"></div>
+  </div>
+
+  <script src="alunos.js"></script>
+  <script>
+    const alunoSelect = document.getElementById('aluno');
+    const filtroAluno = document.getElementById('filtroAluno');
+    const filtroTema = document.getElementById('filtroTema');
+    const sugestoesLista = document.getElementById('sugestoes-lista');
+    const perguntaBloom = document.getElementById('perguntaBloom');
+    const dicaProgresso = document.getElementById('dicaProgresso');
+
+    const sugestoes = {
+      "Conceitos de Desenvolvimento para a Web": {
+        "Conhecer": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ],
+        "Compreender": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ],
+        "Aplicar": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ],
+        "Analisar": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ],
+        "Avaliar": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ],
+        "Criar": [
+          "Identificou corretamente os elementos básicos de uma página HTML.",
+          "Reconheceu a função de tags como <head>, <body> e <p>."
+        ]
+      },
+      "CSS Avançado e Prático": {
+        "Aplicar": [
+          "Utilizou Flexbox e Grid para construir um layout funcional.",
+          "Aplicou classes utilitárias para estilização eficiente."
+        ]
+      },
+      "UX – Experiência do Usuário": {
+        "Analisar": [
+          "Avaliou a navegação e ergonomia de uma interface.",
+          "Identificou pontos de melhoria na experiência do usuário."
+        ]
+      },
+      "Firebase – Autenticação, Firestore e Hosting": {
+        "Aplicar": [
+          "Implementou autenticação com Firebase.",
+          "Salvou e recuperou dados do Firestore corretamente."
+        ]
+      },
+      "Frameworks Front-End (Bootstrap e React)": {
+        "Criar": [
+          "Desenvolveu um mini sistema em React utilizando componentes.",
+          "Usou Bootstrap para estilização responsiva."
+        ]
+      }
+    };
+
+    const perguntas = {
+      "Conhecer": "Você consegue listar os elementos principais desse conteúdo?",
+      "Compreender": "Você pode explicar com suas palavras como isso funciona?",
+      "Aplicar": "Consegue usar esse conhecimento em uma situação prática?",
+      "Analisar": "Você consegue comparar esse recurso com outra forma de fazer?",
+      "Avaliar": "Você consegue justificar por que escolheu essa abordagem?",
+      "Criar": "Como você criaria algo novo usando isso que aprendeu?"
+    };
+
+    const dicas = {
+      "Conhecer": "Reveja os conceitos principais com flashcards ou vídeos curtos.",
+      "Compreender": "Faça um mapa mental com os conceitos e suas funções.",
+      "Aplicar": "Pratique criando páginas simples com base nos exemplos dados.",
+      "Analisar": "Compare seu código com o de colegas e identifique melhorias.",
+      "Avaliar": "Participe de revisões em grupo e tente justificar escolhas.",
+      "Criar": "Proponha um projeto autoral e tente organizar sua ideia visualmente."
+    };
+
+    function preencherAlunos() {
+      alunos.forEach(nome => {
+        const opt = document.createElement('option');
+        opt.value = nome;
+        opt.textContent = nome;
+        alunoSelect.appendChild(opt);
+      });
+    }
+
+    filtroAluno.addEventListener('input', () => {
+      const termo = filtroAluno.value.toLowerCase();
+      alunoSelect.innerHTML = '';
+      alunos.filter(n => n.toLowerCase().includes(termo)).forEach(nome => {
+        const opt = document.createElement('option');
+        opt.value = nome;
+        opt.textContent = nome;
+        alunoSelect.appendChild(opt);
+      });
+    });
+
+    document.getElementById('nivel').addEventListener('change', atualizarSugestoes);
+    document.getElementById('tema').addEventListener('change', atualizarSugestoes);
+
+    function atualizarSugestoes() {
+      const tema = document.getElementById('tema').value;
+      const nivel = document.getElementById('nivel').value;
+      sugestoesLista.innerHTML = '';
+      const lista = sugestoes[tema]?.[nivel] || [];
+
+      lista.forEach(texto => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = texto;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + texto));
+        sugestoesLista.appendChild(label);
+      });
+
+      perguntaBloom.textContent = perguntas[nivel] || '';
+      dicaProgresso.textContent = dicas[nivel] || '';
+    }
+
+    function salvarRegistro() {
+      const aluno = alunoSelect.value;
+      const tema = document.getElementById('tema').value;
+      const nivel = document.getElementById('nivel').value;
+      const comentario = document.getElementById('comentario').value;
+
+      const selecionados = Array.from(sugestoesLista.querySelectorAll('input:checked')).map(cb => cb.value);
+      const registro = {
+        aluno, tema, nivel,
+        comentario: [...selecionados, comentario].filter(Boolean).join(' | '),
+        data: new Date().toLocaleString()
+      };
+
+      const historico = JSON.parse(localStorage.getItem('diagnosticosBloom')) || [];
+      historico.push(registro);
+      localStorage.setItem('diagnosticosBloom', JSON.stringify(historico));
+
+      document.getElementById('comentario').value = '';
+      sugestoesLista.innerHTML = '';
+      mostrarHistorico();
+    }
+
+    function mostrarHistorico() {
+      const registros = JSON.parse(localStorage.getItem('diagnosticosBloom')) || [];
+      const filtroTemaValor = filtroTema.value;
+      const termoBusca = filtroAluno.value.toLowerCase();
+      const container = document.getElementById('historico');
+
+      const filtrados = registros.filter(r => {
+        return (
+          (!filtroTemaValor || r.tema === filtroTemaValor) &&
+          (!termoBusca || r.aluno.toLowerCase().includes(termoBusca))
+        );
+      });
+
+      container.innerHTML = filtrados.reverse().map(r => `
+        <div class="registro">
+          <strong>${r.aluno}</strong> — ${r.tema}<br>
+          <em>${r.nivel}</em> — ${r.data}<br>
+          <p>${r.comentario}</p>
+          <hr>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      preencherAlunos();
+      mostrarHistorico();
+      filtroAluno.addEventListener('input', mostrarHistorico);
+      filtroTema.addEventListener('change', mostrarHistorico);
+    });
+  </script>
+</body>
+</html>

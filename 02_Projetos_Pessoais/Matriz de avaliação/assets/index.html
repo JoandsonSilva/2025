@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Avaliação - Educador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> <!-- Estilo atualizado -->
+</head>
+<body>
+
+  <div class="nav-header">
+  <a href="index.html">Controle de Avaliação</a>
+  <a href="Relatório de Produção.html">Relatório</a>
+  <a href="matriz.html">Matriz Bloom</a>
+  <a href="execucao_verbo.html">Execução do Verbo</a>
+  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+  <a href="login.html">Login</a>
+</div>
+
+  <h1>Controle de Avaliação - Educador</h1>
+
+  <div id="lista-alunos"></div>
+
+  <!-- Ordem importa: primeiro os dados, depois as interações -->
+  <script src="alunos.js"></script>
+  <script src="interacoes.js"></script>
+
+  <footer style="margin-top: 30px; text-align: center;">
+    <a href="Relatório de Produção.html" target="_blank" style="text-decoration: none;">
+      <button style="
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background: rgba(68, 8, 8, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: background 0.3s ease;
+      " onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+        Ver Relatório de Pontuações
+      </button>
+    </a>
+  </footer>
+
+</body>
+</html>

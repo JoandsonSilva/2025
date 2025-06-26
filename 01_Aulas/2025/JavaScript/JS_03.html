@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<label for="">Nome</label>
+<input type="text" id="nome" placeholder="Digite aqui o seu nome">
+<label for="">Idade</label>
+<input type="number" id="idade" placeholder="Digite a sua idade">
+<label for="">Cidade</label>
+<input type="text" id="cidade" placeholder="Digite sua Cidade">
+<button onclick="saudacao()"> Enviar</button>
+<script>
+    function saudacao(){
+        let nome = document.getElementById('nome').value;
+        let idade = document.getElementById('idade').value;
+        let cidade = documento.getElementById('cidade').value
+        alert('Olá ' + nome + '. Você tem '+ idade + 'e nasceu em '+ cidade);  
+         document.querySelector('button').style.backgroundColor = 'red' }
+</script>
+Desafio: Insira a idade e a cidade de nascimento da pessoa, mostre no alert e altere a cor do botão ao ser clicado

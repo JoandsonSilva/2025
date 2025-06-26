@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+}
+
+/* Seletores */
+#menu { height: 70px; background-color: aqua;
+display: flex;}
+
+li, a{
+    display: inline-block;
+text-decoration: none;
+}
+a{
+    padding-left: 20px;
+    color: black;
+}
+ul

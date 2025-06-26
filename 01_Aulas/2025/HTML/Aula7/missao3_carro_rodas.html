@@ -1,0 +1,44 @@
+
+<!-- Missão 3: Carro com rodas girando -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Missão 3 - Carro com Rodas</title>
+  <style>
+    .carro {
+      width: 200px;
+      height: 100px;
+      background: red;
+      position: relative;
+      margin: 100px auto;
+      border-radius: 20px;
+    }
+    .roda {
+      width: 40px;
+      height: 40px;
+      background: black;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -20px;
+      animation: rodar 1s linear infinite;
+    }
+    .roda.esquerda {
+      left: 20px;
+    }
+    .roda.direita {
+      right: 20px;
+    }
+    @keyframes rodar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="carro">
+    <div class="roda esquerda"></div>
+    <div class="roda direita"></div>
+  </div>
+</body>
+</html>

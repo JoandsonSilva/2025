@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Loja Doces & Sorrisos - Contato</title>
+</head>
+<body>
+  <h1 >Fale Conosco - Loja Doces & Sorrisos</h1>
+  <p >Entre em contato conosco para encomendar seus doces favoritos!</p>
+
+  <h2>Nossos Horários</h2>
+    <table border="1"   >
+    
+    <tr>
+      <th>Dia</th>
+      <th>Horário</th>
+    </tr>
+    <tr>
+      <td>Seg-Sex</td>
+      <td>8h - 18h</td>
+    </tr>
+    <tr>
+      <td>Sábado</td>
+      <td>8h - 12h</td>
+    </tr>
+    <tr>
+        <td>Domingo</td>
+        <td>Fechado</td>
+    </tr>
+  </table>
+
+  <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Conheça Nossa Loja</h2>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkmQjKvYmS0buv9x6X2nBpd1qMkwQU-LaoHQ&s" alt="Fachada da Loja" width="300">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkmQjKvYmS0buv9x6X2nBpd1qMkwQU-LaoHQ&s" alt="Doces da Loja" width="300">
+
+  <h2>Assista Nossos Vídeos</h2>
+  <video width="560" height="315" controls>
+    <source src="video1.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+  </video>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/xNKDIaqIwfk?si=BxShPqrNm6axMdha" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <h2>Formulário de Contato</h2>
+  <form action="" method="post">
+    <fieldset>
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required minlength="3" maxlength="50"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="telefone">Telefone:</label><br>
+    <input type="tel" id="telefone" name="telefone" required pattern="\(\d{2}\)\s\d{4,5}-\d{4}" placeholder="(11) 99999-9999"><br><br>
+
+    <label for="cidade">Cidade:</label><br>
+    <input type="text" id="cidade" name="cidade" required><br><br>
+
+    <label for="mensagem">Mensagem:</label><br>
+    <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="500"></textarea><br><br>
+
+    <label for="categoria">Assunto:</label><br>
+    <select id="categoria" name="categoria" required>
+      <option value="">Escolha uma opção</option>
+      <option value="encomenda">Encomenda</option>
+      <option value="duvida">Dúvida</option>
+      <option value="elogio">Elogio</option>
+      <option value="outros">Outros</option>
+    </select><br><br>
+
+    <label>
+      <input type="checkbox" name="aceito" required>
+      Aceito os termos de uso.
+    </label><br><br>
+
+    <input type="submit" value="Enviar">
+    </fieldset>
+  </form>
+
+  <h2>Nossas Redes Sociais</h2>
+  <p>
+    <a href="https://instagram.com/lojadoces" target="_blank">Instagram</a> |
+    <a href="https://facebook.com/lojadoces" target="_blank">Facebook</a>
+  </p>
+</body>
+</html>

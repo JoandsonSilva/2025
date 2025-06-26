@@ -1,0 +1,185 @@
+/* style.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  margin: 0;
+  padding: 30px 20px;
+  color: white;
+}
+
+h1, h2, h3, h4 {
+  color: #f0f0f0;
+}
+
+.nav-header {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  padding: 10px 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.nav-header a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.nav-header a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+input[type="text"], select, textarea {
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-bottom: 15px;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+  width: 90%;
+  max-width: 700px;
+
+}
+
+.aluno-nome {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.secao label {
+  display: block;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.pontuacao {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #86c0ff;
+}
+
+.busca {
+  margin: 20px 0;
+  max-width: 300px;
+}
+
+/* Relatório colapsável */
+.relatorio-card {
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.relatorio-header {
+  padding: 14px 18px;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  cursor: pointer;
+  color: #293339;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.relatorio-body {
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #293339;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pergunta-bloco {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #0f2027;
+}
+
+.pergunta-bloco em {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #aadfff;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background-color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.comentario {
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 4px;
+}
+
+
+
+
+/* Style do controle de avaliação */
+

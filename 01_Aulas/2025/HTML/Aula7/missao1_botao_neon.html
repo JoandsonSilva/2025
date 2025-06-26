@@ -1,0 +1,46 @@
+
+<!-- Missão 1: Botão com Efeito Neon e Vibração -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Missão 1 - Botão Neon</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .botao-neon {
+      background-color: #000;
+      color: #0f0;
+      border: 2px solid #0f0;
+      padding: 15px 40px;
+      font-size: 20px;
+      border-radius: 12px;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+      box-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .botao-neon:hover {
+      animation: tremer 0.2s infinite;
+      background-color: #0f0;
+      color: #000;
+    }
+    @keyframes tremer {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      50% { transform: translateX(2px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(2px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Missão 1: Botão com Efeito Neon</h1>
+  <button class="botao-neon">Clique com Estilo</button>
+</body>
+</html>

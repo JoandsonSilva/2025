@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+
+        #box{
+            width: 400px; height: 300px;
+        }
+        img{
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="lamp"> Clique aqui</button>
+    <div id="box">
+
+    </div>
+    
+    <script>
+           
+            document.getElementById('lamp').onclick = function () {
+                document.getElementById('box').innerHTML = '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbTB9OLlPUxLzNBNnfLg6woUi2uYWrTZYUqA&s">'
+            
+        }
+
+        document.getElementById('lamp').onmousemove = function () {
+                document.getElementById('box').innerHTML = '<img src="https://diskentulhojundiai.com.br/wp-content/uploads/2021/11/lamp.jpg">'
+            
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>

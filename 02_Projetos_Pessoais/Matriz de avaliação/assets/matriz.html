@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matriz Bloom Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f2027;
+      color: #f0f0f0;
+      margin: 0;
+    }
+
+    .nav-header {
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-header a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: background 0.3s;
+    }
+
+    .nav-header a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #filtro {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #203a43;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2c5364;
+    }
+
+    .nivel {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      color: white;
+    }
+
+    .lembrar { background-color: #4a90e2; }
+    .compreender { background-color: #50e3c2; }
+    .aplicar { background-color: #f5a623; }
+    .avaliar { background-color: #d0021b; }
+    .criar { background-color: #7ed321; }
+  </style>
+</head>
+<body>
+  <div class="nav-header">
+  <a href="index.html">Controle de Avaliação</a>
+  <a href="Relatório de Produção.html">Relatório</a>
+  <a href="matriz.html">Matriz Bloom</a>
+  <a href="#">Execução do Verbo</a>
+  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+  <a href="login.html">Login</a>
+</div>
+
+
+  <div class="container">
+    <h1>Matriz da Taxonomia de Bloom Digital</h1>
+    <input type="text" id="filtro" placeholder="Buscar aluno pelo nome...">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Aluno</th>
+          <th>Nível Bloom</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-bloom"></tbody>
+    </table>
+  </div>
+
+  <script src="alunos.js"></script>
+  <script>
+    function calcularPontuacoes(index) {
+      let aula = 0, mini = 0, projeto = 0, comentario = false;
+
+      for (let i = 1; i <= 10; i++) {
+        const id = `aluno${index}_aula${i}`;
+        if (localStorage.getItem(id + '_check') === 'true') {
+          aula += parseFloat(localStorage.getItem(id + '_valor')) || 0;
+        }
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        const id = `aluno${index}_miniprojeto${i}`;
+        if (localStorage.getItem(id + '_check') === 'true') {
+          mini += parseFloat(localStorage.getItem(id + '_valor')) || 0;
+          if (localStorage.getItem(id + '_comentario')) comentario = true;
+        }
+      }
+
+      const idProj = `aluno${index}_projetoFinal`;
+      if (localStorage.getItem(idProj + '_check') === 'true') {
+        projeto = parseFloat(localStorage.getItem(idProj + '_valor')) || 0;
+        if (localStorage.getItem(idProj + '_comentario')) comentario = true;
+      }
+
+      return { aula, mini, projeto, comentario };
+    }
+
+    function classificarBloom({ aula, mini, projeto, comentario }) {
+      if (projeto >= 8) return { nivel: "Criar", classe: "criar" };
+      if (projeto >= 5 && comentario) return { nivel: "Avaliar", classe: "avaliar" };
+      if (mini >= 4) return { nivel: "Aplicar", classe: "aplicar" };
+      if (aula >= 8) return { nivel: "Compreender", classe: "compreender" };
+      if (aula >= 5) return { nivel: "Lembrar", classe: "lembrar" };
+      return { nivel: "Inicial", classe: "" };
+    }
+
+    function montarTabela() {
+      const tbody = document.getElementById('tabela-bloom');
+      tbody.innerHTML = '';
+      const termo = document.getElementById('filtro').value.toLowerCase();
+
+      alunos.forEach((nome, index) => {
+        if (!nome.toLowerCase().includes(termo)) return;
+
+        const dados = calcularPontuacoes(index);
+        const bloom = classificarBloom(dados);
+
+        const tr = document.createElement('tr');
+        const tdNome = document.createElement('td');
+        tdNome.textContent = nome;
+
+        const tdNivel = document.createElement('td');
+        tdNivel.innerHTML = `<span class='nivel ${bloom.classe}'>${bloom.nivel}</span>`;
+
+        const tdDetalhes = document.createElement('td');
+        tdDetalhes.innerHTML = `Aulas: ${dados.aula.toFixed(1)}<br>Miniprojetos: ${dados.mini.toFixed(1)}<br>Projeto: ${dados.projeto.toFixed(1)}`;
+
+        tr.appendChild(tdNome);
+        tr.appendChild(tdNivel);
+        tr.appendChild(tdDetalhes);
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('filtro').addEventListener('input', montarTabela);
+      montarTabela();
+    });
+  </script>
+</body>
+</html>

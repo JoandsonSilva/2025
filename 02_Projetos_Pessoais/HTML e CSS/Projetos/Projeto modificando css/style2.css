@@ -1,0 +1,56 @@
+/* Variáveis de cores */
+:root {
+    --cor-primaria: #1e3b8a;
+    --cor-secundaria: #3B82F6;
+    --cor-destaque: #60A5FA; 
+    --cor-cinza: #F3F4F6; 
+    --cor-texto: #E5E7EB;
+    --cor-preta: #111827;
+}
+/* Reset e estilos globais */
+* { margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+body {
+    background-color: var(--cor-preta);
+    color: var(--cor-texto);
+    line-height: 1.6;}
+/* HEADER - Estilização da apresentação */
+header {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(to right, var(--cor-primaria), var(--cor-secundaria));
+    color: white;
+}
+
+h1 {   font-size: 2.5rem;   font-weight: 600;}
+.sobre {
+    text-align: center;
+    padding: 50px;
+    background-color: var(--cor-cinza);
+    color: var(--cor-preta);
+    border-radius: 10px; width: 80%; margin: 30px auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);}
+.banner {
+    text-align: center;padding: 80px 20px;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria), var(--cor-destaque));
+    color: white;
+    border-radius: 10px;
+    width: 90%; margin: 40px auto;
+    box-shadow: 0px 10px 30px rgba(59, 130, 246, 0.4);}
+
+.banner h1 {
+    font-size: 50px; font-weight: 600px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.banner p { font-size: 17px; margin-top: 10px;}
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {font-size: 23px;
+    }
+    .banner h1 {
+        font-size: 20px;}
+    .banner p {
+        font-size: 15px;}
+}

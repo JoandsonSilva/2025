@@ -1,0 +1,64 @@
+
+<!-- Missão 2: Campo com Sol, Nuvens Animadas e Grama -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Missão 2 - Sol e Nuvens</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(#87ceeb, #90ee90);
+      height: 100vh;
+    }
+    .sol {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, yellow, orange);
+      border-radius: 50%;
+      position: absolute;
+      top: 50px;
+      left: 100px;
+      animation: girar 10s linear infinite;
+    }
+    .nuvem {
+      width: 120px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 100px;
+      left: -150px;
+      box-shadow: 30px 0 #fff, 60px 0 #fff;
+      animation: mover 20s linear infinite;
+    }
+    .grama {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: repeating-linear-gradient(
+        90deg,
+        #228B22,
+        #228B22 10px,
+        #2E8B57 10px,
+        #2E8B57 20px
+      );
+    }
+    @keyframes girar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes mover {
+      0% { left: -150px; }
+      100% { left: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sol"></div>
+  <div class="nuvem"></div>
+  <div class="grama"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <input type="user" placeholder="Digite o seu usuário" id="user">
+    <input type="password" placeholder="Digite a sua senha" id="senha">
+    <button onclick="teste()" id="login">Enviar</button> 
+
+    <script>
+        function teste() {
+
+        let user = document.getElementById('user').value;
+        let senha = document.getElementById('senha').value;
+
+        if (user==='admin' && senha==='1234')
+            alert("Acesso concluído")
+        else
+            alert('Tente novamente')        }
+
+        
+    </script>
+</body>
+</html>

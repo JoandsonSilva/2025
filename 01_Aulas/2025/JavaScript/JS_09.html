@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teste de Operadores</title>
+</head>
+<body>
+  <h1>Abra o console para ver os resultados</h1>
+
+  <input type="text" id="nome" placeholder="Digite o seu nome">
+  <input type="number" id="n1" placeholder="Digite um número">
+  <input type="number" id="n2" placeholder="Digite outro número">
+  <button onclick="calc()">Enviar</button>
+  
+  <script>
+    function calc(){
+        let a = Number(document.getElementById('n1')).value;
+        let b = Number(document.getElementById('n2')).value;
+        let name = String(document.getElementById('nome')).value;
+ 
+    console.log(" Olá" + name + "A soma da sua conta é : ", a + b);      
+    console.log("Subtração:", a - b);  
+    console.log("Multiplicação:", a * b); 
+    console.log("Divisão:", a / b);    
+    console.log("Resto da divisão:", a % b); }
+  </script>
+
+
+<p> Desafio: O usuário gostaria de digitar os números para realizar a conta,  atualize o programa para o usuário poder inserir, seu nome e os números que gostaria de calcular. </p>
+</body>
+</html>

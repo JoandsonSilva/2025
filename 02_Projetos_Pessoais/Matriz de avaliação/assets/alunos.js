@@ -1,0 +1,26 @@
+// alunos.js
+const alunos = [
+  "Ben-Hur Sousa Pires", "Emilly Oliveira Santos", "Evelly Oliveira Santos",
+  "Camilli Iasmin Mangueira de Sousa", "Wesley Ribeiro Hora", "Luis Felipe Macedo",
+  "Christopher Cedric Azevedo da Paixão", "Guilherme Tadeu Bie Gomes",
+  "Gustavo Pires Ignacio Pereira", "Nícolas Avila da SIlva", "Thaynná Dias Croce",
+  "Emanoel Santos de Almeida", "Talita Vasconcelos Miguel", "Matheus Reis Brauer",
+  "Gyovanna Tenório dos Santos Tavares", "Wendew Boaventura Gonçalves",
+  "Vanessa Gabrielly Alves Pereira", "Sophia Santos de Albuquerque Silva",
+  "Guilherme Oliveira Coqueiro", "Ariane do Nascimento", "Jennifer Francisca Silva Almeida",
+  "Ana Leticia Terentin da Costa", "Francisco Emanuel da SIlva Sousa", "Igor Lima Siqueira",
+  "Carlos Eduardo Oliveira Marques Garrucho", "Diego Pereira Gomes", "Ana Luisa Lima Alves",
+  "Micael Tozi Ribeiro", "Kaic Gomes dos Santos", "Thiago Dantas Orasmo",
+  "Roberto Kamal de Camargo Oliveira", "Davi Soares de Moura", "Pietro Matheo de Oliveira",
+  "Henry Mirando Reis de Souza", "Murilo Lima de Vasconcelos", "Sophie Claudina Simoes",
+  "Thaya Moraes de Souza", "Vitor Hugo Livramento Ferreira", "Ana Júlia Dutra de Barros",
+  "Carlos Daniel Alves de Jesus", "João Victor de Oliveira Carvalho",
+  "Gustavo Bonfim Tenorio", "Julia de Souza Arruda", "Victor Hugo Silva Santos",
+  "Dalila Morais Garcia", "Beatriz Oliveira de Arruda Teago", "Erick Santos de Almeida",
+  "Kauan Ribeiro de Lima", "Thiago Vasconcelos de Souza", "Giovana Prado Sousa",
+  "Arthur José Borges da SIlva", "Gustavo Sadao Nascimento Matsuda",
+  "Diogo Henrique Pescuma Benevenuto", "Sofia Silva de Andrade",
+  "Isabela Dias de Oliveira de Souza", "Ana Carolinne Silva Pereira",
+  "Guilherme Eduardo Costa de Oliveira", "Luan Yago Brogi de Aguiar Leite",
+  "Yasmin Gabrielly Cardoso do Nascimento", "Stephany Alves Cordeiro"
+];

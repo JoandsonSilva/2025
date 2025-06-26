@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 500px;
+            width: 500px;
+            background-color: rgb(212, 203, 203);
+            margin: 10px;
+            border-radius: 30px;
+        }
+
+        p {
+            margin: 15px;
+            line-height: 25px;
+            text-align: justify;
+            padding: 5px;
+        }
+
+        button {
+            width: 80px;
+            text-align: center;
+            color: whitesmoke;
+            background-color: rgba(139, 139, 139, 0.87);
+            border: none;
+            border-radius: 30px;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: rgba(139, 139, 139, 0.3);
+        }
+
+        body {
+            background-image: url(https://cdn.pixabay.com/photo/2024/09/05/15/13/vietnam-9025183_1280.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="colorButton">Escuro</button>
+    <button id="colorButtonC">Claro</button>
+
+    <div id="box">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nemo, ex sequi minima dolor dolorum nihil
+            incidunt sed culpa ratione doloribus eveniet, quod assumenda! Cumque nam quod labore dicta fuga! Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Impedit dolor autem commodi accusamus qui cumque pariatur
+            voluptate facere et, asperiores a beatae quod libero necessitatibus provident sed expedita maiores eveniet?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti vel, repellat explicabo expedita quidem
+            fugit ipsa asperiores atque tempore perferendis officiis ab debitis odit saepe, soluta animi excepturi
+            impedit aut. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam et nihil at, alias placeat
+            doloribus? Necessitatibus, incidunt corrupti dolore placeat, suscipit accusamus aspernatur eligendi cumque
+            facere maiores autem assumenda deserunt. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            consequatur libero dolor ipsum natus obcaecati dolore laboriosam, at magnam iure illum odio reprehenderit
+            tempore architecto? Neque iste debitis harum laboriosam. lorme
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae dicta officia voluptate rem earum amet,
+            soluta !</p>
+    </div>
+
+    <script>
+
+
+
+        document.getElementById('colorButton').onclick = function () {
+            document.getElementById('box').style.backgroundColor = 'black';
+            document.getElementById('box').style.color = 'white';
+        }
+        document.getElementById('colorButtonC').onclick = function () {
+            document.getElementById('box').style.backgroundColor = 'gray';
+            document.getElementById('box').style.color = 'black';
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
