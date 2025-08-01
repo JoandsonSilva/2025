@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #DCDDFE;
+}
+
+nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #111254;
+    height: 50px;
+}
+
+ul {
+
+    display: flex;
+    gap: 30px;
+}
+
+li,
+a {
+    text-decoration: none;
+    list-style: none;
+    margin-right: 10px;
+    color: white;
+}
+
+.carrossel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes slide{
+    0% { left: 0;}
+    100% {left: -200%;}
+}
+img {
+    width: 230px;
+    height: 160px;
+}
+.item{
+    position: absolute;
+    animation: slide 10% infinite linear;
+}
+.item:nth-child(2){
+    left: 100%;
+
+}
+
+.item:nth-child(3){
+    left: 200%;
+
+}

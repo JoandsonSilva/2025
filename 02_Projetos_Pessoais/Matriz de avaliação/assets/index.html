@@ -5,27 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controle de Avaliação - Educador</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"> <!-- Estilo atualizado -->
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Configurações dinâmicas para quantidade de atividades por avaliação
+    const configuracoesAvaliacao = {
+      av1: 8,
+      av2: 3,
+      av3: 1
+    };
+
+    function atualizarQuantidadeInputs() {
+      const container = document.getElementById('config-avaliacoes');
+      container.innerHTML = `
+        <label>Quantidade de atividades AV1 (Aulas): <input type="number" id="qtdAv1" value="${configuracoesAvaliacao.av1}" min="1" max="20"></label>
+        <label>Quantidade de atividades AV2 (Miniprojetos): <input type="number" id="qtdAv2" value="${configuracoesAvaliacao.av2}" min="1" max="10"></label>
+        <label>Quantidade de atividades AV3 (Projeto Final): <input type="number" id="qtdAv3" value="${configuracoesAvaliacao.av3}" min="1" max="5"></label>
+        <button onclick="salvarConfiguracoes()">Salvar Configurações</button>
+      `;
+    }
+
+    function salvarConfiguracoes() {
+      configuracoesAvaliacao.av1 = parseInt(document.getElementById('qtdAv1').value);
+      configuracoesAvaliacao.av2 = parseInt(document.getElementById('qtdAv2').value);
+      configuracoesAvaliacao.av3 = parseInt(document.getElementById('qtdAv3').value);
+      localStorage.setItem('configAv1', configuracoesAvaliacao.av1);
+      localStorage.setItem('configAv2', configuracoesAvaliacao.av2);
+      localStorage.setItem('configAv3', configuracoesAvaliacao.av3);
+      location.reload();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      configuracoesAvaliacao.av1 = parseInt(localStorage.getItem('configAv1')) || configuracoesAvaliacao.av1;
+      configuracoesAvaliacao.av2 = parseInt(localStorage.getItem('configAv2')) || configuracoesAvaliacao.av2;
+      configuracoesAvaliacao.av3 = parseInt(localStorage.getItem('configAv3')) || configuracoesAvaliacao.av3;
+      atualizarQuantidadeInputs();
+    });
+  </script>
 </head>
 <body>
-
   <div class="nav-header">
-  <a href="index.html">Controle de Avaliação</a>
-  <a href="Relatório de Produção.html">Relatório</a>
-  <a href="matriz.html">Matriz Bloom</a>
-  <a href="execucao_verbo.html">Execução do Verbo</a>
-  <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
-  <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
-  <a href="login.html">Login</a>
-</div>
+    <a href="index.html">Controle de Avaliação</a>
+    <a href="Relatório de Produção.html">Relatório</a>
+    <a href="matriz.html">Matriz Bloom</a>
+    <a href="execucao_verbo.html">Execução do Verbo</a>
+    <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
+    <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
+    <a href="login.html">Login</a>
+  </div>
 
   <h1>Controle de Avaliação - Educador</h1>
 
-  <div id="lista-alunos"></div>
+  <section style="margin: 20px 0; padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.05);">
+    <h2>Configurar Quantidade de Avaliações</h2>
+    <div id="config-avaliacoes" style="display: flex; flex-direction: column; gap: 12px;"></div>
+  </section>
 
-  <!-- Ordem importa: primeiro os dados, depois as interações -->
-  <script src="alunos.js"></script>
-  <script src="interacoes.js"></script>
+  <div id="lista-alunos"></div>
 
   <footer style="margin-top: 30px; text-align: center;">
     <a href="Relatório de Produção.html" target="_blank" style="text-decoration: none;">
@@ -46,5 +81,11 @@
     </a>
   </footer>
 
+  <script src="alunos.js"></script>
+  <script>
+    // Expondo config para uso global no interacoes.js
+    window.configuracoesAvaliacao = configuracoesAvaliacao;
+  </script>
+  <script src="interacoes.js"></script>
 </body>
 </html>

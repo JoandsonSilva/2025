@@ -1,0 +1,114 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{ /* Corpo da página */
+    font-family: sans-serif;
+    background-color: #111;
+    color: #eaeaea;
+    line-height: 1.6;
+    padding: 0 1.5rem;
+}
+
+header{ /* Cabeçalho */
+    padding: 3rem 0 2rem;
+    text-align: center;
+    border-bottom: 1px solid #333; 
+}
+header h1{
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+nav{ /* Elemento de Navegação */
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+}
+.menu { 
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 0;
+}
+.menu, li, a{
+    color: #aaa;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+.menu, a, li:hover{
+    color: #ffffff;
+}
+main{
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+section{
+    margin-bottom: 3rem;
+
+}
+h2{
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    color: white;
+    border-left: 4px solid #00ffd0;
+    padding-left: 0.5rem;
+}
+p{
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+img{
+    width: 100%;
+    height: 300px;
+    border: none;
+    margin-top: 1rem;
+    border-radius: 8px 40px 30px 70px;
+    background-color: black;
+}
+iframe{
+    width: 100%;
+    height: 300px;
+    border: none;
+    margin-top: 1rem;
+    border-radius: 8px ;
+    background-color: black;
+}
+footer{
+    text-align: center; 
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+}
+
+
+
+
+/* Tema Livre ou sugerido:
+
+-Saúde Mental na Escola
+- Redes Sociais e Emoções
+- Cultura de Quebrada
+- Games que Marcaram Gerações
+- Juventude e Futuro do Trabalho
+ */
+
+ /* O que precisa ter
+ 
+ -Estrutura semântica completa
+ - Navegação simulada com <nav> (links falsos)
+ - 2 páginas
+ - Mínimo de 3 seções com conteúdo relevante
+ -2 Imagens e 2 vídeo obrigatórios
+ - Formulário com validação (feedback, contato ou opinião)
+ */

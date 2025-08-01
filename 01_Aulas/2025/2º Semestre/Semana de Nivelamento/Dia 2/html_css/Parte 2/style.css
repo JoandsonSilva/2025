@@ -1,0 +1,57 @@
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+th td{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgb(182, 181, 181);
+}
+th{
+  background-color: #cfd8dc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #aaa;
+}
+th {
+  background-color: #cfd8dc;
+}
+ */

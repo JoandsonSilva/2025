@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Rubik+80s+Fade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap');
+
+
+header{
+    background: linear-gradient(green,rgb(0, 153, 255),transparent);
+    color: azure;
+    padding: 10px;
+    text-align: left;
+    border: 5px solid gray;
+}
+
+.Inicio{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.Histo{
+    justify-content: left;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border: 2px white;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.logo img{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+.logo img:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.logo2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo2 img{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+.cara,.trouxa,.my_name,.frança,.palerma,.por_que_você_matou_o_curirin{
+    color: rgb(255, 255, 255);
+}
+
+.nav{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav a{
+    color: #a8a8a8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.nav a:hover{
+    color: white;
+}
+
+ul, li{
+    display: inline-block;
+    text-decoration: none;
+    
+}
+
+a{
+    text-decoration: none;
+    color: gray;
+}
+
+h1{
+    text-align: center;
+    color: rgb(165, 255, 236);
+    font-family: 'Blinker';
+} 
+h1:hover{
+    color: rgb(116, 227, 255);
+    transform: rotate(0.5deg);
+}
+
+body{
+    background: url(saopaulo2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+section {
+    background: transparent;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.texto{
+    color: #a8a8a8;
+    text-decoration: none;
+    transition: 0.3s;
+    font-family: 'Rubik 80s Fade';
+}
+
+.texto:hover{
+    color: white;
+    transform: rotate(0.5deg);
+}
+
+.sla_texto2{
+    color: white;
+    text-decoration: none;
+    transition: 0.3;
+    font-size: 20px;
+}
+
+footer{
+    background: linear-gradient(transparent,rgb(61, 61, 61));
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.dave{
+    height: 300px;
+    width: 300px;
+}
+
+.dave:hover{
+    scale: 0.9;
+}
+
+.morg{
+    height: 300px;
+    width: 300px;
+}
+.morg:hover{
+    scale: 0.9;
+}
+.rato{
+    height: 300px;
+    width: 300px;
+}
+
+.rato:hover{
+    scale: 0.9;
+}
+.logo2 img:hover{
+    transform: rotate(360deg);
+    transition: 0.5s ;
+}
+.girando {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    animation: girar 2.5s linear infinite;
+}
+
+@keyframes girar {
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+    transform: rotate(360deg);
+    }
+}

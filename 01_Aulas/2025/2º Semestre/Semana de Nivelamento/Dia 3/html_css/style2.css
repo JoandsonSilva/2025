@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: rgb(5, 5, 5);    display: flex;
+    justify-content: start;    align-items: center;
+    height: 40px;}
+li {
+    display: inline-block;}
+
+a { color: white;  padding: 12px;  font-size: 16px;
+    /* Alterado */}
+
+a:hover {
+    background-color: rgb(249, 249, 249);   color: black;
+}
+
+header {
+    display: flex;
+    margin-top: 10px;     /* Alterado */
+    margin-bottom: 10px;    /* Inserido */
+    border-bottom: 1px solid #0077ff33;
+    height: auto;
+}
+
+#box1 {
+    display: flex;
+    width: 70%;
+    align-items: center;   /* Inserido */
+    margin-left: 30px;
+}
+
+#box2 {
+    width: 30%;
+    display: flex;
+    justify-content: end;
+}
+
+button {
+    height: 50px;
+    width: 100px;/* Alterado */
+    background-color: white;
+    border: 1px solid #36a1ff;     /* Alterado */
+    color: blue;     /* Alterado */
+    border-radius: 5px;    /* Inserido */
+    margin-left: 10px;     /* Alterado */
+    margin-bottom: 10px;    /* Alterado */
+}
+input {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 30px;
+    height: 35px;    /* alterado */
+    width: 300%;
+    background-image: url(https://cdn-icons-png.flaticon.com/512/5272/5272056.png);
+    /* Inserido */
+    background-size: 15px;
+    background-position: 95%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+h1 {
+    color: #0000ba;
+    font-size: 40px;
+    margin: 0 15px 0 0;
+    font-family: "Enriqueta";
+}
+body {
+    font-weight: 400;
+}
+section {
+    display: flex;
+    height: 90vh; }
+
+.container1 {
+    width: 60%;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.container2 {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bloco1, .bloco2, .bloco3 {
+    margin-left: 70px;
+}
+
+h2 {
+    font-size: 80px;
+    font-family: Helvetica, sans-serif;
+    margin-bottom: 20px;
+    margin-top: 10px;}
+
+p {
+    font-size: 19px;
+    width: 80%;
+    font-family: sans-serif;
+    line-height: 30px;}
+
+.azul {
+    background-color: #0000ba;
+    color: white;
+    width: 40%;
+    font-weight: 700;
+    margin: 0;
+}
+
+.branco {
+    border: 2px solid;
+    width: 40%;
+    height: 80px;
+    margin: 0;
+}
+
+
+/* 
+
+
+header, nav, main, footer {
+  padding: 20px;
+  color: white;
+}
+header { background-color: #4CAF50; }
+nav { background-color: #2E7D32; }
+main { background-color: #81C784; }
+footer { background-color: #1B5E20; }
+ */

@@ -1,48 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matriz 9-Box - Avaliação DTEC</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    .grid9box {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 40px;
-    }
-    .quadrante {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      padding: 14px;
-      min-height: 150px;
-      color: white;
-      font-size: 14px;
-    }
-    .quadrante h3 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      color: #aadfff;
-    }
-    .aluno-box {
-      margin-bottom: 8px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 6px;
-      padding: 6px;
-    }
-    #filtroAluno {
-      margin-top: 20px;
-      padding: 10px;
-      width: 300px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Avaliação - Nine Box</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="nav-header">
@@ -50,73 +12,147 @@
     <a href="Relatório de Produção.html">Relatório</a>
     <a href="matriz.html">Matriz Bloom</a>
     <a href="painel Diganostico Bloom.html">Diagnóstico Bloom</a>
-    <a href="escadinha taxonomia Bloom.html">Escadinha da Taxonomia</a>
-    <a href="login.html">Login</a>
+    <a href="execucao_verbo.html">Execução do Verbo</a>
+    <a href="escadinha taxonomia Bloom.html">Escadinha</a>
   </div>
 
-  <h1>Matriz 9-Box - Avaliação de Desempenho</h1>
+  <h1>Painel de Avaliação Final</h1>
 
-  <input type="text" id="filtroAluno" placeholder="Buscar aluno...">
+  <input type="text" id="filtroAluno" placeholder="Buscar aluno..." style="margin: 20px 0; padding: 10px; width: 300px; border-radius: 8px; border: none; font-size: 16px;">
 
-  <div class="grid9box" id="grade">
-    <!-- Quadrantes serão inseridos via JavaScript -->
+  <label for="aluno">Selecione o aluno:</label>
+  <select id="aluno" class="input-padrao"></select>
+
+  <div class="secao">
+    <h3>Avaliações Técnicas</h3>
+    <label>AV1 (Aulas / Atividades): <input type="number" id="av1" min="0" max="10" step="0.1" readonly></label>
+    <label>AV2 (Miniprojetos): <input type="number" id="av2" min="0" max="10" step="0.1" readonly></label>
+    <label>AV3 (Projeto Final): <input type="number" id="av3" min="0" max="10" step="0.1" readonly></label>
   </div>
 
+  <div class="secao">
+    <h3>Notas Comportamentais</h3>
+    <label>Participação (Peso 1): <input type="number" id="participacao" min="0" max="10" step="0.1"></label>
+    <label>Constância (Peso 1.5): <input type="number" id="constancia" min="0" max="10" step="0.1"></label>
+    <label>Trabalho em Equipe (Peso 1.5): <input type="number" id="equipe" min="0" max="10" step="0.1"></label>
+  </div>
+
+  <button onclick="calcularNotas()">Calcular Nota Final</button>
+
+  <div id="resultado" class="secao">
+    <h3>Resultado</h3>
+    <p><strong>Técnico:</strong> <span id="notaTecnico"></span></p>
+    <p><strong>Engajamento:</strong> <span id="notaEngajamento"></span></p>
+    <p><strong>Média Final:</strong> <span id="mediaFinal"></span></p>
+    <p><strong>Classificação (Nine Box):</strong> <span id="classificacao"></span></p>
+  </div>
+
+  <script src="alunos.js"></script>
+  <script src="ninebox.js"></script>
   <script>
-    const dadosAlunos = [
-      { nome: "Ana Clara Silva", engajamento: "Alto", desempenho: "Médio", detalhes: "AV1: 7 | AV2: 6 | Constância: 9" },
-      { nome: "João Pedro Lima", engajamento: "Médio", desempenho: "Baixo", detalhes: "AV1: 4 | AV2: 5 | Participação: 6" },
-      { nome: "Carla Menezes", engajamento: "Alto", desempenho: "Alto", detalhes: "AV1: 9 | AV2: 9 | Projeto: 10" },
-      { nome: "Vitor Hugo Santos", engajamento: "Baixo", desempenho: "Alto", detalhes: "AV1: 8 | AV2: 9 | Participação: 4" },
-      { nome: "Bruno Almeida", engajamento: "Médio", desempenho: "Médio", detalhes: "AV1: 6 | AV2: 6 | Equipe: 7" },
-      { nome: "Mariana Alves", engajamento: "Baixo", desempenho: "Baixo", detalhes: "AV1: 3 | AV2: 2 | Projeto: 4" }
-    ];
+    const alunos = window.alunos || [];
+    const select = document.getElementById('aluno');
+    const filtro = document.getElementById('filtroAluno');
 
-    const quadrantes = {
-      'Alto-Alto': { titulo: "1. Potencial máximo", alunos: [] },
-      'Alto-Médio': { titulo: "2. Engajado, precisa de reforço técnico", alunos: [] },
-      'Alto-Baixo': { titulo: "3. Persistente, sem domínio técnico", alunos: [] },
-      'Médio-Alto': { titulo: "4. Promissor, mas instável", alunos: [] },
-      'Médio-Médio': { titulo: "5. Desenvolvimento equilibrado", alunos: [] },
-      'Médio-Baixo': { titulo: "6. Participa, sem avanços técnicos", alunos: [] },
-      'Baixo-Alto': { titulo: "7. Talento técnico, pouco engajamento", alunos: [] },
-      'Baixo-Médio': { titulo: "8. Apoio socioemocional", alunos: [] },
-      'Baixo-Baixo': { titulo: "9. Alerta pedagógico", alunos: [] }
-    };
-
-    dadosAlunos.forEach(aluno => {
-      const chave = `${aluno.engajamento}-${aluno.desempenho}`;
-      if (quadrantes[chave]) {
-        quadrantes[chave].alunos.push(aluno);
-      }
-    });
-
-    function montarQuadrantes(filtro = '') {
-      const grid = document.getElementById('grade');
-      grid.innerHTML = '';
-
-      Object.entries(quadrantes).forEach(([chave, info]) => {
-        const div = document.createElement('div');
-        div.className = 'quadrante';
-        div.innerHTML = `<h3>${info.titulo}</h3>`;
-
-        info.alunos.filter(a => a.nome.toLowerCase().includes(filtro)).forEach(aluno => {
-          const aBox = document.createElement('div');
-          aBox.className = 'aluno-box';
-          aBox.innerHTML = `<strong>${aluno.nome}</strong><br><small>${aluno.detalhes}</small>`;
-          div.appendChild(aBox);
-        });
-
-        grid.appendChild(div);
-      });
+    if (!localStorage.getItem('configuracoesAvaliacao')) {
+      localStorage.setItem('configuracoesAvaliacao', JSON.stringify({ av1: 8, av2: 3, av3: 1 }));
     }
 
-    document.getElementById('filtroAluno').addEventListener('input', e => {
-      const termo = e.target.value.toLowerCase();
-      montarQuadrantes(termo);
-    });
+    function calcularNotaFinalPorTipo(index, tipo, totalItens) {
+      let soma = 0;
+      let count = 0;
+      for (let i = 1; i <= totalItens; i++) {
+        const checked = localStorage.getItem(`aluno${index}_${tipo}${i}_check`) === 'true';
+        const valor = parseFloat(localStorage.getItem(`aluno${index}_${tipo}${i}_valor`)) || 0;
+        if (checked) {
+          soma += valor;
+          count++;
+        }
+      }
+      return count > 0 ? Math.min(10, (soma / count) * 10) : 0;
+    }
 
-    montarQuadrantes();
+    function preencherNotasAlunoSelecionado() {
+      const nome = select.value;
+      const index = alunos.indexOf(nome);
+      if (index < 0) {
+        document.getElementById('av1').value = '';
+        document.getElementById('av2').value = '';
+        document.getElementById('av3').value = '';
+        document.getElementById('participacao').value = '';
+        document.getElementById('constancia').value = '';
+        document.getElementById('equipe').value = '';
+        return;
+      }
+
+      const config = JSON.parse(localStorage.getItem('configuracoesAvaliacao')) || { av1: 8, av2: 3, av3: 1 };
+
+      const av1 = calcularNotaFinalPorTipo(index, 'aula', config.av1);
+      document.getElementById('av1').value = av1 > 0 ? av1.toFixed(1) : '';
+
+      const av2 = calcularNotaFinalPorTipo(index, 'mini', config.av2);
+      document.getElementById('av2').value = av2 > 0 ? av2.toFixed(1) : '';
+
+      const av3 = parseFloat(localStorage.getItem(`aluno${index}_final_nota`));
+      document.getElementById('av3').value = !isNaN(av3) && av3 > 0 ? av3.toFixed(1) : '';
+
+      document.getElementById('participacao').value = '';
+      document.getElementById('constancia').value = '';
+      document.getElementById('equipe').value = '';
+    }
+
+    function calcularNotas() {
+      const av1 = parseFloat(document.getElementById('av1').value) || 0;
+      const av2 = parseFloat(document.getElementById('av2').value) || 0;
+      const av3 = parseFloat(document.getElementById('av3').value) || 0;
+
+      const participacao = parseFloat(document.getElementById('participacao').value) || 0;
+      const constancia = parseFloat(document.getElementById('constancia').value) || 0;
+      const equipe = parseFloat(document.getElementById('equipe').value) || 0;
+
+      const mediaTecnico = ((av1 + av2 + av3) / 3).toFixed(2);
+      const mediaEngajamento = ((participacao * 1 + constancia * 1.5 + equipe * 1.5) / 4).toFixed(2);
+      const mediaFinal = ((parseFloat(mediaTecnico) + parseFloat(mediaEngajamento)) / 2).toFixed(2);
+
+      document.getElementById('notaTecnico').textContent = mediaTecnico;
+      document.getElementById('notaEngajamento').textContent = mediaEngajamento;
+      document.getElementById('mediaFinal').textContent = mediaFinal;
+
+      const classifica = (nota) => nota >= 7 ? 'Alto' : nota >= 4 ? 'Médio' : 'Baixo';
+      const tecnicaClass = classifica(mediaTecnico);
+      const engajamentoClass = classifica(mediaEngajamento);
+      const classificacao = {
+        'Alto-Alto': "1. Potencial máximo",
+        'Alto-Médio': "2. Engajado, precisa de reforço técnico",
+        'Alto-Baixo': "3. Persistente, sem domínio técnico",
+        'Médio-Alto': "4. Promissor, mas instável",
+        'Médio-Médio': "5. Desenvolvimento equilibrado",
+        'Médio-Baixo': "6. Participa, sem avanços técnicos",
+        'Baixo-Alto': "7. Talento técnico, pouco engajamento",
+        'Baixo-Médio': "8. Apoio socioemocional",
+        'Baixo-Baixo': "9. Alerta pedagógico"
+      };
+      const chave = `${engajamentoClass}-${tecnicaClass}`;
+      document.getElementById('classificacao').textContent = classificacao[chave] || 'Não classificado';
+    }
+
+    function atualizarSelect(filtroValor = '') {
+      select.innerHTML = '';
+      alunos.filter(nome => nome.toLowerCase().includes(filtroValor.toLowerCase())).forEach(nome => {
+        const option = document.createElement('option');
+        option.value = nome;
+        option.textContent = nome;
+        select.appendChild(option);
+      });
+      if (select.options.length > 0) {
+        select.selectedIndex = 0;
+        preencherNotasAlunoSelecionado();
+      }
+    }
+
+    filtro.addEventListener('input', e => atualizarSelect(e.target.value));
+    select.addEventListener('change', preencherNotasAlunoSelecionado);
+    atualizarSelect();
   </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+div {
+    background-color: aqua;
+}
+
+div {
+    background-color: black;
+}
+
+.image {
+    background-color: wheat;
+}
+
+
+#imagens {
+    height: 50px;
+    width: 90px;
+    margin-left: 20px;
+}
