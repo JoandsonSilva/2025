@@ -1,0 +1,48 @@
+/* Starter (edite aqui) — mobile-first */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.4;
+}
+
+:root {
+    --gap: 12px;
+    --container-max: 1100px;
+}
+
+body {
+    padding: 16px;
+}
+
+.container {
+    display: flex;
+    gap: 12px;
+}
+
+.i3 {
+    order: 1;
+}
+
+.i1 {
+    order: 2;
+}
+
+.i2 {
+    order: 3;
+}
+
+.item {
+    border: 1px solid black;
+    background-color: rgba(155, 155, 155, 0.39);
+    padding: 5px;
+}
+
+/* Escreva APENAS as regras pedidas no enunciado deste exercício */

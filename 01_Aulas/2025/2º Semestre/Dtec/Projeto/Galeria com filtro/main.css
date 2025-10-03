@@ -1,0 +1,22 @@
+ @import "./button.css";
+ @import "./grid.css";
+ @import "./reset.css";
+
+ .wrap {
+            max-width: 1000px;
+            margin: 24px auto;
+            padding: 0 16px
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            margin: 0 0 12px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: .95rem;
+            margin: 0 0 8px
+        }
+
+       

@@ -1,0 +1,41 @@
+.card {
+    align-items: stretch  ;
+    background: #ffffff;
+    border-radius: 10px;
+    color: #0F172A;
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    justify-content: center;
+    margin: 15px;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+    border: #0f172a10 1px solid;
+}
+
+.card p {
+    text-align: justify;
+    margin: 10px;
+}
+
+.title-projetos-card {
+    width: 68%;
+    display: flex;
+    justify-content: start;
+    margin-top: 40px;
+}
+
+.card-image{
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 3px;
+    position: static;
+}
+
+.card:hover{
+    scale: 1.05;
+    background-color: rgba(229, 229, 229, 0.075);
+    transition-duration: 2s ;
+      border: #0f172a50 1px solid;
+}

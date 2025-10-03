@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Galeria com Filtros — Intermediário</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --panel: #0b1220;
+            --line: #334155;
+            --txt: #e5e7eb;
+            --muted: #94a3b8;
+            --acc: #60a5fa;
+            --pill: #111827;
+            --fav: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--txt);
+            font-family: system-ui, Segoe UI, Roboto
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 24px auto;
+            padding: 0 16px
+        }
+
+        h1 {
+            font-size: 1.15rem;
+            margin: 0 0 8px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        /* Linha de controles */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin: 12px 0
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .pill {
+            background: var(--pill);
+            color: #cbd5e1;
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill input {
+            accent-color: var(--acc)
+        }
+
+        .search-sort {
+            margin-left: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center
+        }
+
+        input[type="search"],
+        select {
+            background: var(--panel);
+            color: var(--txt);
+            border: 1px solid var(--line);
+            padding: 8px 10px;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+
+        .counter {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        /* Grid da galeria */
+        .grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in
+        }
+
+        .meta {
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px
+        }
+
+        .title {
+            font-weight: 600
+        }
+
+        .badge {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .fav {
+            background: transparent;
+            border: 1px solid var(--line);
+            color: #eab308;
+            padding: 6px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        .fav.on {
+            background: rgba(250, 204, 21, .12);
+            border-color: #a16207
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        /* Lightbox (modal) */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .75);
+            display: none;
+            place-items: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .lightbox.open {
+            display: grid
+        }
+
+        .lightbox figure {
+            max-width: min(1000px, 92vw);
+            margin: 0
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px
+        }
+
+        .lightbox figcaption {
+            color: #e5e7eb;
+            margin-top: 8px;
+            text-align: center
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #111827;
+            color: #e5e7eb;
+            border: 1px solid #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer
+        }
+
+        @media (max-width:560px) {
+            .search-sort {
+                margin-left: 0
+            }
+
+            input[type="search"],
+            select {
+                min-width: 0;
+                flex: 1
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1> Galeria com Filtros — Intermediário</h1>
+        <p class="muted">Marque 1+ categorias, busque por título, ordene e favorite imagens ⭐</p>
+
+        <!-- Controles -->
+        <div class="controls">
+            <div class="pills" id="pills" role="group" aria-label="Categorias">
+                <!-- cada pill tem um checkbox para multi-seleção -->
+                <label class="pill"><input type="checkbox" value="natureza" checked> Natureza</label>
+                <label class="pill"><input type="checkbox" value="pessoas" checked> Pessoas</label>
+                <label class="pill"><input type="checkbox" value="cidades" checked> Cidades</label>
+                <label class="pill"><input type="checkbox" value="animais" checked> Animais</label>
+            </div>
+
+            <div class="search-sort">
+                <input id="q" type="search" placeholder="Buscar por título..." aria-label="Buscar por título" />
+                <select id="sort" aria-label="Ordenar">
+                    <option value="az">A → Z</option>
+                    <option value="za">Z → A</option>
+
+
+
+
+
+
+
+                    
+                    <option value="fav">Favoritos primeiro</option>
+                </select>
+                <span id="counter" class="counter">Exibindo 0 itens</span>
+            </div>
+        </div>
+
+        <!-- GRID (renderizado via JS) -->
+        <main id="grid" class="grid" aria-live="polite"></main>
+
+        <!-- Mensagem de vazio -->
+        <p id="empty" class="muted hidden">Nenhum item encontrado. Ajuste os filtros ou a busca.</p>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-modal="true" role="dialog" aria-label="Visualização de imagem">
+        <button class="close" id="closeLb">Fechar ✕</button>
+        <figure>
+            <img id="lbImg" alt="">
+            <figcaption id="lbCap"></figcaption>
+        </figure>
+    </div>
+
+    <script>
+        /* ====== Dados (poderiam vir de um JSON futuramente) ====== */
+        const DATA = [
+            { id: 'n1', title: 'Montanhas ao amanhecer', category: 'natureza', src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'n2', title: 'Floresta densa', category: 'natureza', src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'p1', title: 'Retrato urbano', category: 'pessoas', src: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'p2', title: 'Estudo e foco', category: 'pessoas', src: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'c1', title: 'Noite na cidade', category: 'cidades', src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'c2', title: 'Arquitetura moderna', category: 'cidades', src: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'a1', title: 'Gatinho curioso', category: 'animais', src: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'a2', title: 'Cão aventureiro', category: 'animais', src: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop' },
+        ];
+
+        /* ====== Estado ====== */
+        const pills = document.getElementById('pills');
+        const q = document.getElementById('q');
+        const sortSel = document.getElementById('sort');
+        const grid = document.getElementById('grid');
+        const emptyMsg = document.getElementById('empty');
+        const counter = document.getElementById('counter');
+
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCap = document.getElementById('lbCap');
+        const closeLb = document.getElementById('closeLb');
+
+        let activeCats = new Set(['natureza', 'pessoas', 'cidades', 'animais']);
+        let favorites = loadFavs(); // Set<string> de ids
+
+        function loadFavs() {
+            try {
+                const raw = localStorage.getItem('gallery:favs');
+                return new Set(raw ? JSON.parse(raw) : []);
+            } catch { return new Set(); }
+        }
+        function saveFavs() {
+            localStorage.setItem('gallery:favs', JSON.stringify([...favorites]));
+        }
+
+        /* ====== Render ====== */
+        function normalize(str) { return (str || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, ''); }
+
+        function getFilteredSorted() {
+            const term = normalize(q.value.trim());
+            let list = DATA.filter(item => activeCats.has(item.category) &&
+                (term === '' || normalize(item.title).includes(term)));
+            const mode = sortSel.value;
+            if (mode === 'az') {
+                list.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (mode === 'za') {
+                list.sort((a, b) => b.title.localeCompare(a.title));
+            } else if (mode === 'fav') {
+                // favoritos primeiro, mantendo A→Z dentro de cada grupo
+                list.sort((a, b) => {
+                    const af = favorites.has(a.id) ? 1 : 0;
+                    const bf = favorites.has(b.id) ? 1 : 0;
+                    if (af !== bf) return bf - af;
+                    return a.title.localeCompare(b.title);
+                });
+            }
+            return list;
+        }
+
+        function render() {
+            const items = getFilteredSorted();
+            grid.innerHTML = items.map(it => `
+    <article class="card" data-id="${it.id}" data-category="${it.category}">
+      <img src="${it.src}" alt="${it.title}" data-title="${it.title}">
+      <div class="meta">
+        <div>
+          <div class="title">${it.title}</div>
+          <div class="badge">${labelCat(it.category)}</div>
+        </div>
+        <button class="fav ${favorites.has(it.id) ? 'on' : ''}" title="Favoritar/Desfavoritar">⭐</button>
+      </div>
+    </article>
+  `).join('');
+
+            const n = items.length;
+            counter.textContent = `Exibindo ${n} ${n === 1 ? 'item' : 'itens'}`;
+            emptyMsg.classList.toggle('hidden', n > 0);
+        }
+
+        function labelCat(cat) {
+            return { natureza: 'Natureza', pessoas: 'Pessoas', cidades: 'Cidades', animais: 'Animais' }[cat] || cat;
+        }
+
+        /* ====== Eventos ====== */
+        // Multi-filtro (checkbox nas pills)
+        pills.addEventListener('change', (e) => {
+            if (e.target.matches('input[type="checkbox"]')) {
+                const val = e.target.value;
+                if (e.target.checked) activeCats.add(val);
+                else activeCats.delete(val);
+                render();
+            }
+        });
+
+        // Busca e ordenação
+        q.addEventListener('input', render);
+        sortSel.addEventListener('change', render);
+
+        // Delegação no grid: favoritos e lightbox
+        grid.addEventListener('click', (e) => {
+            const favBtn = e.target.closest('.fav');
+            const img = e.target.closest('img');
+
+            // Toggle favorito
+            if (favBtn) {
+                const card = favBtn.closest('.card');
+                const id = card.dataset.id;
+                if (favorites.has(id)) { favorites.delete(id); favBtn.classList.remove('on'); }
+                else { favorites.add(id); favBtn.classList.add('on'); }
+                saveFavs();
+                // se ordenação estiver por "favoritos", re-renderiza para reordenar
+                if (sortSel.value === 'fav') render();
+                return;
+            }
+
+            // Lightbox
+            if (img) {
+                lbImg.src = img.src;
+                lbImg.alt = img.dataset.title;
+                lbCap.textContent = img.dataset.title;
+                lb.classList.add('open');
+            }
+        });
+
+        // Fechar lightbox
+        closeLb.addEventListener('click', () => lb.classList.remove('open'));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+        /* ====== Start ====== */
+        render();
+    </script>
+</body>
+
+</html>

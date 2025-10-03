@@ -1,0 +1,38 @@
+.cards {
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--shadow)
+}
+
+.card__body {
+    padding: 1rem
+}
+
+.card h3 {
+    margin: .25rem 0;
+    font-size: 1.05rem
+}
+
+.card p {
+    color: var(--muted);
+    font-size: .9rem;
+    margin: .25rem 0 .5rem
+}
+
+.card strong {
+    font-size: 1rem
+}
+
+.card img {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}   

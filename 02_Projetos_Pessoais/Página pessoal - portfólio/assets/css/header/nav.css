@@ -1,0 +1,30 @@
+
+nav {
+    height: auto;
+    
+    width: 60%;
+    display: flex;
+    justify-content: end;
+    margin-right: 5%;
+}
+
+nav ul {
+    
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    gap: 50px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+a:hover {
+    color: #cbe1ff89;
+    border-bottom: #0f172a70 1px solid;
+    
+}

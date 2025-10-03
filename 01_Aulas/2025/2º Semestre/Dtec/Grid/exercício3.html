@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .blog {
+            display: grid;
+            grid-template-areas:
+                "post1 sidebar"
+                "post2 sidebar"
+                "post3 sidebar";
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+            height: 100vh;
+        }
+
+        .post1 {
+            grid-area: post1;
+            background: #4cafef;
+        }
+
+        .post2 {
+            grid-area: post2;
+            background: #8bc34a;
+        }
+
+        .post3 {
+            grid-area: post3;
+            background: #ff9800;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #9c27b0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blog">
+        <div class="post1">Post 1</div>
+        <div class="post2">Post 2</div>
+        <div class="post3">Post 3</div>
+        <div class="sidebar">Sidebar</div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+
+.container {
+    display: grid;
+    gap: 42px;
+    grid-template-areas: "hero" "benefits" "cta";
+}
+
+.hero {
+    grid-area: hero;
+}
+
+.benefits {
+    grid-area: benefits;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+.cta {
+    grid-area: cta;
+}
+
+.benefit{
+    background-color: aquamarine; border: 1px solid black;
+}
+
+@media (max-width:700px){
+    .benefits{
+        grid-template-columns:1fr
+    }
+} 

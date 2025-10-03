@@ -1,0 +1,6 @@
+.reserve {
+  background:#dbfaf5; /* botão sem contraste */
+  border:1px solid #ccc;
+  padding:3px 6px;
+  margin-top:2px;
+}

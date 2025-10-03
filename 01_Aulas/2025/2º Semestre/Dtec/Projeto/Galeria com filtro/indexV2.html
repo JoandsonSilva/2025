@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Galeria com Filtros (HTML + CSS + JS)</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#0b1220; --line:#334155; --txt:#e5e7eb;
+    --muted:#94a3b8; --acc:#60a5fa; --pill:#111827;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,Segoe UI,Roboto}
+  .wrap{max-width:1100px;margin:24px auto;padding:0 16px}
+
+  header{display:grid;gap:10px;margin-bottom:12px}
+  h1{font-size:1.15rem;margin:0}
+  .muted{color:var(--muted);font-size:.95rem}
+
+  /* Filtros (pílulas) */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+  .pill{
+    background:var(--pill); color:#cbd5e1; border:1px solid var(--line);
+    padding:8px 12px; border-radius:999px; cursor:pointer;
+  }
+  .pill[aria-pressed="true"]{background:var(--acc); color:#031525; border-color:transparent}
+  .search{margin-left:auto;display:flex;gap:8px;align-items:center}
+  input[type="search"]{
+    background:var(--panel); color:var(--txt); border:1px solid var(--line);
+    padding:8px 10px; border-radius:10px; min-width:220px;
+  }
+  .btn{background:var(--acc); color:#031525; border:0; padding:8px 12px; border-radius:10px; cursor:pointer}
+
+  /* Grid da galeria */
+  .grid{
+    display:grid; gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .card img{width:100%; aspect-ratio:4/3; object-fit:cover; display:block}
+  .card .meta{padding:10px 12px}
+  .hidden{display:none!important}
+
+  .empty{
+    display:none; text-align:center; color:var(--muted);
+    padding:26px 10px; border:1px dashed var(--line); border-radius:12px; margin-top:12px;
+  }
+
+  @media (max-width:560px){
+    .filters{gap:6px}
+    .search{width:100%; margin-left:0}
+    input[type="search"]{flex:1; min-width:0}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1> Galeria com Filtros</h1>
+      <p class="muted">Use as categorias ou a busca para filtrar as imagens.</p>
+
+      <div class="filters" id="filters" role="toolbar" aria-label="Filtros de categoria">
+        <button class="pill" data-filter="tudo" aria-pressed="true">Tudo</button>
+        <button class="pill" data-filter="natureza" aria-pressed="false">Natureza</button>
+        <button class="pill" data-filter="pessoas" aria-pressed="false">Pessoas</button>
+        <button class="pill" data-filter="cidades" aria-pressed="false">Cidades</button>
+        <button class="pill" data-filter="animais" aria-pressed="false">Animais</button>
+
+        <div class="search" role="search">
+          
+            <input id="q" type="search" placeholder="Buscar por título..." aria-label="Buscar por título" />
+          
+          <button id="clear" class="btn" type="button">Limpar</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- GRID -->
+    <main id="grid" class="grid" aria-live="polite">
+      <!-- Natureza -->
+      <article class="card" data-category="natureza" data-title="Montanhas ao amanhecer">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" alt="Montanhas ao amanhecer" />
+        <div class="meta"><strong>Montanhas ao amanhecer</strong><br><span class="muted">Natureza</span></div>
+      </article>
+
+      <article class="card" data-category="natureza" data-title="Floresta densa">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Floresta densa" />
+        <div class="meta"><strong>Floresta densa</strong><br><span class="muted">Natureza</span></div>
+      </article>
+
+      <!-- Pessoas -->
+      <article class="card" data-category="pessoas" data-title="Retrato urbano">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop" alt="Retrato urbano" />
+        <div class="meta"><strong>Retrato urbano</strong><br><span class="muted">Pessoas</span></div>
+      </article>
+
+      <article class="card" data-category="pessoas" data-title="Estudo e foco">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop" alt="Estudo e foco" />
+        <div class="meta"><strong>Estudo e foco</strong><br><span class="muted">Pessoas</span></div>
+      </article>
+
+      <!-- Cidades -->
+      <article class="card" data-category="cidades" data-title="Noite na cidade">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt="Noite na cidade" />
+        <div class="meta"><strong>Noite na cidade</strong><br><span class="muted">Cidades</span></div>
+      </article>
+
+      <article class="card" data-category="cidades" data-title="Arquitetura moderna">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1200&auto=format&fit=crop" alt="Arquitetura moderna" />
+        <div class="meta"><strong>Arquitetura moderna</strong><br><span class="muted">Cidades</span></div>
+      </article>
+
+      <!-- Animais -->
+      <article class="card" data-category="animais" data-title="Gatinho curioso">
+        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop" alt="Gatinho curioso" />
+        <div class="meta"><strong>Gatinho curioso</strong><br><span class="muted">Animais</span></div>
+      </article>
+
+      <article class="card" data-category="animais" data-title="Cão aventureiro">
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop" alt="Cão aventureiro" />
+        <div class="meta"><strong>Cão aventureiro</strong><br><span class="muted">Animais</span></div>
+      </article>
+    </main>
+
+    <p id="empty" class="empty">Nenhum item encontrado. Tente outra categoria ou termo.</p>
+  </div>
+
+<script>
+  // ------ JS bem simples: filtra por categoria + busca de texto ------
+  const filtersBar = document.getElementById('filters');
+  const grid = document.getElementById('grid');
+  const cards = [...grid.querySelectorAll('.card')];
+  const q = document.getElementById('q');
+  const clearBtn = document.getElementById('clear');
+  const emptyMsg = document.getElementById('empty');
+
+  let activeCategory = 'tudo';
+
+  function normalize(str){ return str.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,''); }
+
+  function applyFilters(){
+    const term = normalize(q.value.trim());
+    let visibleCount = 0;
+
+    cards.forEach(card=>{
+      const category = card.dataset.category;
+      const title = normalize(card.dataset.title || '');
+      const matchCat = (activeCategory === 'tudo') || (category === activeCategory);
+      const matchText = term === '' || title.includes(term);
+
+      const show = matchCat && matchText;
+      card.classList.toggle('hidden', !show);
+      if(show) visibleCount++;
+    });
+
+    emptyMsg.style.display = visibleCount ? 'none' : 'block';
+  }
+
+  // Delegação para os botões de categoria
+  filtersBar.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.pill[data-filter]');
+    if(!btn) return;
+
+    // Atualiza estado visual (aria-pressed)
+    filtersBar.querySelectorAll('.pill[data-filter]').forEach(b=> b.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true');
+
+    // Define categoria ativa e aplica filtros
+    activeCategory = btn.dataset.filter;
+    applyFilters();
+  });
+
+  // Busca por texto
+  q.addEventListener('input', applyFilters);
+
+  // Limpar busca e resetar para "Tudo" opcionalmente
+  clearBtn.addEventListener('click', ()=>{
+    q.value = '';
+    applyFilters();
+  });
+
+  // Estado inicial
+  applyFilters();
+</script>
+</body>
+</html>

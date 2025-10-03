@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(161, 252, 255);
+    height: 50px;
+}
+
+.menu{
+    list-style: none; display: flex; gap: 12px; 
+}
+
+a{
+    text-decoration: none; color:black; font-weight: 400;
+}
+
+/* Escreva APENAS as regras pedidas no enunciado deste exercício */
+/* DICA parcial: Na `.nav`, use `display:flex; align-items:center;` e complete `justify-content: space-between`. */

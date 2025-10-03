@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercício 24 — Tabela responsiva (stack)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Exercício 24 — Tabela responsiva (stack)</h1>
+  <h3>Enunciado</h3>
+  <p>Empilhe a tabela no mobile sem alterar o HTML: cada linha vira “cartão”.</p>
+  <h3>Objetivos</h3>
+  <ul><li>Esconder `thead` no mobile.</li>
+<li>Usar `td::before` com `content: attr(data-label)`.</li></ul>
+  <h3>Faça no CSS</h3>
+  <ul><li>Estilizar tabela normal no desktop.</li>
+<li>Em ≤700px: esconder `thead`, `display:block` em elementos e usar rótulos com `::before`.</li></ul>
+  <h3>Dica</h3><p></p>
+  <h3>Live Preview (HTML)</h3>
+  <div class="container">
+  <table class="tabela-responsiva">
+    <thead><tr><th>Nome</th><th>Curso</th><th>Turma</th><th>Nota</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Nome">Ana</td><td data-label="Curso">Front-end</td><td data-label="Turma">A</td><td data-label="Nota">9.1</td></tr>
+      <tr><td data-label="Nome">Bruno</td><td data-label="Curso">Back-end</td><td data-label="Turma">B</td><td data-label="Nota">8.6</td></tr>
+      <tr><td data-label="Nome">Carla</td><td data-label="Curso">Full Stack</td><td data-label="Turma">A</td><td data-label="Nota">9.5</td></tr>
+    </tbody>
+  </table>
+</div>
+  <h3>Explicação</h3>
+  <ul><li>O pseudo-elemento injeta o nome da coluna mantendo clareza no mobile.</li></ul>
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+
+
+
+.container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 12px;
+}
+
+.item{
+    flex: 0 1 200px;
+    background-color: gray; border: 1px black dashed;
+}
+/* Escreva APENAS as regras pedidas no enunciado deste exercício */
+/* DICA parcial: Use `display:flex; flex-wrap:wrap; gap:12px;`. Nos itens, defina `flex: 0 1 ___px` (~140–200). */

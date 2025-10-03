@@ -1,0 +1,15 @@
+header {
+    height: auto;
+   background-color: #111e2e;
+    color: #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    
+}
+
+.header{
+    width: 40%;
+    margin-left: 3%;
+}

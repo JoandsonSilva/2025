@@ -1,0 +1,52 @@
+.container {
+    height: auto;
+    display: flex;
+    margin: 20px
+}
+
+.container-card {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.container-contatos {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-first {
+    align-items: center;
+    display: flex;
+    margin: 10px 0;
+    width: 70%;
+}
+
+.container-projeto {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.container-projeto {
+    display: flex;
+    justify-content: center;
+    border-top: rgba(110, 110, 110, 0.436) 1px solid;
+    height: auto;
+}
+
+
+
+textarea{
+width: 40%;
+height: auto;
+}

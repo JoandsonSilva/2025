@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airbnb — Clone Estudantil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="assets/css/reset.css" rel="stylesheet">
+  <link href="assets/css/variaveis.css" rel="stylesheet">
+  <link href="assets/css/layout.css" rel="stylesheet">
+  <link href="assets/css/header.css" rel="stylesheet">
+  <link href="assets/css/hero.css" rel="stylesheet">
+  <link href="assets/css/search.css" rel="stylesheet">
+  <link href="assets/css/cards.css" rel="stylesheet">
+  <link href="assets/css/footer.css" rel="stylesheet">
+  <link rel="shortcut icon" href="https://images.icon-icons.com/2108/PNG/512/airbnb_icon_131000.png" type="image/x-icon">
+</head>
+<body>
+  <header class="navbar" role="navigation" aria-label="Menu principal">
+    <a href="#" class="logo" aria-label="Página inicial">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1280px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="Airbnb" />
+    </a>
+
+    <nav class="menu">
+      <a href="#" class="menu__link">Lugares para ficar</a>
+      <a href="#" class="menu__link">Experiências</a>
+      <a href="#" class="menu__link">Ajuda</a>
+    </nav>
+
+    <div class="user">
+      <button class="btn btn--outline">Torne-se um Anfitrião</button>
+      <button class="avatar" aria-label="Abrir menu do usuário">☺</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      
+      <img class="hero__bg" src="https://cdn.pixabay.com/photo/2016/11/29/09/29/beach-1868716_1280.jpg" alt="Vista aérea de uma casa de temporada" />
+      <div class="hero__content">
+        <h1>Encontre estadias únicas perto de você</h1>
+        <form class="search" aria-label="Pesquisar hospedagens">
+          <label>
+            <span class="sr-only">Local</span>
+            <input type="text" placeholder="Para onde?" aria-label="Destino" />
+          </label>
+          <label>
+            <span class="sr-only">Check-in</span>
+            <input type="date" aria-label="Check-in" />
+          </label>
+          <label>
+            <span class="sr-only">Check-out</span>
+            <input type="date" aria-label="Check-out" />
+          </label>
+          <label>
+            <span class="sr-only">Hóspedes</span>
+            <input type="number" min="1" value="2" aria-label="Quantidade de hóspedes" />
+          </label>
+          <button class="btn btn--primary" type="submit">Buscar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="Lista de hospedagens">
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2022/10/11/18/33/house-7514941_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2024/06/23/06/27/lake-8847415_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2023/05/02/21/18/hut-7966169_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2018/01/18/15/32/apartment-3090517_1280.jpg" alt="Apartamento moderno" />
+        <div class="card__body">
+          <h3>Apartamento moderno</h3>
+          <p>4 hóspedes · 2 quartos · 3 camas · 2 banheiros</p>
+          <strong>R$ 540/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271_1280.jpg" alt="Casa na praia" />
+        <div class="card__body">
+          <h3>Casa na praia</h3>
+          <p>6 hóspedes · 3 quartos · 4 camas · 2 banheiros</p>
+          <strong>R$ 880/diária</strong>
+        </div>
+      </article>
+      <!-- Duplicar cards para preencher a grade -->
+    </section>
+
+     <section class="cards" aria-label="Lista de hospedagens">
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2021/10/28/20/20/hut-6750482_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/09/19/22/46/lake-1681485_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2022/01/12/19/28/mountains-6933693_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2023/12/30/07/31/living-room-8477521_1280.jpg" alt="Apartamento moderno" />
+        <div class="card__body">
+          <h3>Apartamento moderno</h3>
+          <p>4 hóspedes · 2 quartos · 3 camas · 2 banheiros</p>
+          <strong>R$ 540/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2017/04/10/22/28/residence-2219972_1280.jpg" alt="Casa na praia" />
+        <div class="card__body">
+          <h3>Casa na praia</h3>
+          <p>6 hóspedes · 3 quartos · 4 camas · 2 banheiros</p>
+          <strong>R$ 880/diária</strong>
+        </div>
+      </article>
+      
+    </section>
+
+     <section class="cards" aria-label="Lista de hospedagens">
+      <article class="card">
+        <img src="https://cdn.pixabay.com/photo/2020/03/13/00/53/solar-systems-4926539_1280.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-1.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-1.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="assets/img/card-2.jpg" alt="Apartamento moderno" />
+        <div class="card__body">
+          <h3>Apartamento moderno</h3>
+          <p>4 hóspedes · 2 quartos · 3 camas · 2 banheiros</p>
+          <strong>R$ 540/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-3.jpg" alt="Casa na praia" />
+        <div class="card__body">
+          <h3>Casa na praia</h3>
+          <p>6 hóspedes · 3 quartos · 4 camas · 2 banheiros</p>
+          <strong>R$ 880/diária</strong>
+        </div>
+      </article>
+      <!-- Duplicar cards para preencher a grade -->
+    </section>
+
+     <section class="cards" aria-label="Lista de hospedagens">
+      <article class="card">
+        <img src="assets/img/card-1.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-1.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-1.jpg" alt="Cabana nas montanhas" />
+        <div class="card__body">
+          <h3>Cabana aconchegante</h3>
+          <p>2 hóspedes · 1 quarto · 1 cama · 1 banheiro</p>
+          <strong>R$ 320/diária</strong>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="assets/img/card-2.jpg" alt="Apartamento moderno" />
+        <div class="card__body">
+          <h3>Apartamento moderno</h3>
+          <p>4 hóspedes · 2 quartos · 3 camas · 2 banheiros</p>
+          <strong>R$ 540/diária</strong>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/card-3.jpg" alt="Casa na praia" />
+        <div class="card__body">
+          <h3>Casa na praia</h3>
+          <p>6 hóspedes · 3 quartos · 4 camas · 2 banheiros</p>
+          <strong>R$ 880/diária</strong>
+        </div>
+      </article>
+      <!-- Duplicar cards para preencher a grade -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__col">
+      <h4>Empresa</h4>
+      <a href="#">Sobre</a>
+      <a href="#">Carreiras</a>
+      <a href="#">Newsroom</a>
+    </div>
+    <div class="footer__col">
+      <h4>Comunidade</h4>
+      <a href="#">Acessibilidade</a>
+      <a href="#">Parceiros</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer__col">
+      <h4>Hospede</h4>
+      <a href="#">Anuncie</a>
+      <a href="#">Recursos</a>
+      <a href="#">Segurança</a>
+    </div>
+  </footer>
+</body>
+</html>

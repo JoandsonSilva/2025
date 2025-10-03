@@ -1,0 +1,32 @@
+/* css/main.css */
+@import "./reset.css";
+
+/* Layout */
+@import "./layout/grid.css";
+
+/* Componentes */
+@import "./components/nav.css";
+@import "./components/button.css";
+@import "./components/card-listing.css";
+
+/* Footer */
+@import "./footer/footer.css";
+
+/* ---- Página / Seção específica (mantido aqui) ---- */
+/* HERO (mantemos no main.css por enquanto) */
+.hero {
+  background:#eee;
+  padding:12px;
+  text-align:center;
+}
+.hero h2 {
+  font-size:16px;
+  color:#777;
+}
+.search-btn {
+  background:#ff38ee;
+  color:rgb(241, 203, 203);
+  padding:4px 8px; /* botão minúsculo */
+  border:none;
+  border-radius:2px;
+}

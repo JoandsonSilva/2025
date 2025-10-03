@@ -1,0 +1,6 @@
+.lista {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr; /* quantidade de colunas não proporcional */
+  margin:10px;
+  gap:7px; /* espaçamento inconsistente */
+}

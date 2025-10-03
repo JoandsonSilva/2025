@@ -1,0 +1,17 @@
+header {
+  display:flex;
+  justify-content:space-between;
+  padding:5px;
+  background:#4b4040;
+  border-bottom:1px solid #ddd;
+}
+header h1 {
+  font-size:14px; /* muito pequeno */
+  color:#ff385c;
+}
+header nav a {
+  margin:3px;
+  font-size:12px;
+  text-decoration:none;
+  color:#e360e7;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page - Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            opacity: 1;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+           
+        }
+
+        
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        header h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00c6ff;
+        }
+
+         .container {
+            background: url(abstrato-ondulado\ \(1\).jpg );
+            background-size: 100vw;
+            /* background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); */
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn-signup {
+            padding: 8px 16px;
+            border: 1px solid white;
+            border-radius: 20px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: white;
+            color: #2c5364;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 50px;
+            max-width: 600px;
+        }
+       
+
+        main h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        main p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .btn-primary {
+            padding: 12px 24px;
+            border: 1px solid white;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: #2c5364;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Studio Design</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Portfólio</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="btn-signup">Orçamento</button>
+        </header>
+
+        <main>
+            <h1>Design que valoriza sua marca</h1>
+            <p>Somos especialistas em criar identidades visuais modernas, sites elegantes e materiais gráficos que
+                destacam sua empresa no mercado.</p>
+            <button class="btn-primary">Quero meu design</button>
+        </main>
+
+        <footer>
+            <p>© 2025 Studio Design - Todos os direitos reservados</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

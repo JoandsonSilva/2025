@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  gap: 16px;
+
+  background-color: antiquewhite;
+}
+
+.aside {
+  flex: 0 0 200px;   
+  background-color: beige;
+  height: 90vh;
+}
+
+.content {
+  flex: 1;          
+  background-color: antiquewhite;
+  height: 100vh;
+}
+

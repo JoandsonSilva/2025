@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercício 30 — Página completa (Flex + Grid)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Exercício 30 — Página completa (Flex + Grid)</h1>
+  <h3>Enunciado</h3>
+  <p>Header (nav), hero, grid de cards, destaque e footer — tudo responsivo.</p>
+  <h3>Objetivos</h3>
+  <ul><li>Combinar Flex (navbar), Grid (cards), `clamp()` (hero) e media queries.</li></ul>
+  <h3>Faça no CSS</h3>
+  <ul><li>Navbar em Flex (alinhamento e espaçamento).</li>
+<li>Hero centralizado com `clamp` no título.</li>
+<li>Cards: grade fluida com `repeat(auto-fit, minmax(220px, 1fr))`.</li>
+<li>Destaque e rodapé com espaçamento adequado.</li></ul>
+  
+  <h3>Live Preview (HTML)</h3>
+  <header class="site-header container">
+  <div class="logo">LOGO</div>
+  <nav class="site-nav"><a href="#">Início</a><a href="#">Cursos</a><a href="#">Contato</a></nav>
+</header>
+<section class="hero hero-page container">
+  <h1>Despertar Tec</h1>
+  <p>Full Stack para adolescentes (15–18).</p>
+  <a class="btn" href="#">Começar</a>
+</section>
+<section class="cards-grid container">
+  <article class="card">Card 1</article><article class="card">Card 2</article><article class="card">Card 3</article>
+  <article class="card">Card 4</article><article class="card">Card 5</article><article class="card">Card 6</article>
+</section>
+<section class="featured container"><h2>Destaque</h2><p>Seção em foco com conteúdo importante.</p></section>
+<footer class="site-footer container">© 2025 Despertar Tec</footer>
+  <h3>Explicação</h3>
+  <ul><li>Flex para barras; Grid para cards; tipografia fluida e breakpoints para adaptação.</li></ul>
+</body>
+</html>

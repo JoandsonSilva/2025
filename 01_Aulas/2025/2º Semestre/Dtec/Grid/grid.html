@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            grid-template-rows: 60px auto 90px;
+            grid-template-areas:
+                "header header header"
+                "menu main main"
+                "footer footer footer";
+            gap: 3px;
+            height: 100vh;
+        }
+
+        header {
+            background: #12ffcc;
+            grid-area: header;
+        }
+
+        nav {
+
+            background: #4ecdc4;
+            
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+        }
+
+        
+
+        main {
+            background: #6dc0ff;
+            grid-area: main;
+        }
+
+        footer {
+            background: #1a535c;
+            color: white;
+            grid-area: footer;
+        }
+
+        a {
+            list-style: none;
+            text-decoration: none;
+            color: black;
+
+        }
+
+        a:hover {
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* centraliza verticalmente */
+            align-items: center;
+            /* centraliza horizontalmente */
+            height: 100%;
+            /* ocupa toda a altura do nav */
+            gap: 10px;
+            /* espaçamento entre os links (opcional) */
+        }
+    </style>
+
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Pagamento</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <h1>Título Principal</h1>
+            <p>Este é o conteúdo principal da página.</p>
+        </main>
+
+        <footer>
+
+            <div>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2023 Minha Empresa. Todos os direitos reservados.</p>
+
+        </footer>
+    </div>
+
+    </body>
+
+</html>

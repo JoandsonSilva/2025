@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .corporate {
+            display: grid;
+            grid-template-areas:
+                "header header header header"
+                "box1 box2 box3 box4";
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            height: 100vh;
+        }
+
+        .header {
+            grid-area: header;
+            background: #4cafef;
+        }
+
+        .box1 {
+            grid-area: box1;
+            background: #8bc34a;
+        }
+
+        .box2 {
+            grid-area: box2;
+            background: #ff9800;
+        }
+
+        .box3 {
+            grid-area: box3;
+            background: #ff5722;
+        }
+
+        .box4 {
+            grid-area: box4;
+            background: #9c27b0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="corporate">
+        <div class="header">Cabeçalho</div>
+        <div class="box1">Box 1</div>
+        <div class="box2">Box 2</div>
+        <div class="box3">Box 3</div>
+        <div class="box4">Box 4</div>
+    </div>
+
+</body>
+
+</html>

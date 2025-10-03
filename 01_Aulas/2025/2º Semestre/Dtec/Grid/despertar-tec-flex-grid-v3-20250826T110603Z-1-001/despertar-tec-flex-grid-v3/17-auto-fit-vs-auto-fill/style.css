@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.card {
+    background-color: aquamarine;
+    padding: 5px;
+    border: 1px solid black;
+}

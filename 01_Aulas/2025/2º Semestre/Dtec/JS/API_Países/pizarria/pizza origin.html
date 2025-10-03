@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizzaria Persona — Elegante, Rápida e Clara</title>
+<meta name="description" content="Monte sua pizza com clareza, preço em tempo real e checkout simples.">
+<style>
+  :root{
+    --bg:#fff;
+    --ink:#191919;
+    --muted:#5f6368;
+    --brand:#d63c2c;         /* tomate */
+    --brand-dark:#b22f22;
+    --ok:#1b9c57;
+    --warn:#b54708;
+    --surface:#faf9f7;
+    --card:#ffffff;
+    --border:#e8e2db;
+    --shadow: 0 10px 30px rgba(0,0,0,.06);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box}
+  html,body{background:var(--bg); color:var(--ink); font:16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0}
+  a{color:var(--brand); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Layout */
+  .wrap{max-width:1120px; margin:0 auto; padding:0 16px}
+  header{
+    position:sticky; top:0; z-index:50; background:linear-gradient(180deg,#fff,rgba(255,255,255,.9));
+    backdrop-filter: saturate(1.2) blur(6px); border-bottom:1px solid var(--border);
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0}
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo{width:36px; height:36px; border-radius:10px; background:
+    conic-gradient(from 0deg,#d63c2c 0 25%, #ffd27d 0 50%, #2f7d32 0 75%, #8d6e63 0 100%);
+    box-shadow: inset 0 0 0 3px rgba(0,0,0,.06);
+  }
+  .brand h1{font-size:1.1rem; margin:0}
+  nav a{color:#444; margin-left:16px; font-weight:600}
+  nav a:hover{color:var(--brand)}
+
+  .hero{
+    display:grid; grid-template-columns: 1.2fr 1fr; gap:22px; align-items:center;
+    padding:28px 0 10px;
+  }
+  .hero h2{font-size:2rem; margin:.2rem 0 .6rem}
+  .hero p{color:var(--muted); margin:0 0 1rem}
+  .hero .cta{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{
+    appearance:none; border:0; background:var(--brand); color:#fff; font-weight:800;
+    padding:12px 16px; border-radius:12px; box-shadow:0 8px 18px rgba(214,60,44,.25); cursor:pointer;
+  }
+  .btn:hover{background:var(--brand-dark)}
+  .btn.ghost{background:#fff; color:var(--brand); border:2px solid var(--brand); box-shadow:none}
+  .hero img{width:100%; height:auto; border-radius:var(--radius); box-shadow: var(--shadow); object-fit:cover}
+
+  /* Cards */
+  .section{padding:28px 0}
+  .title{font-size:1.5rem; margin:0 0 10px}
+  .sub{color:var(--muted); margin:0 0 14px}
+  .grid{display:grid; gap:16px; grid-template-columns: repeat(4, 1fr)}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+  }
+  .card .thumb{width:100%; aspect-ratio:4/3; object-fit:cover}
+  .card h3{margin:10px 14px 0}
+  .card p{margin:6px 14px 0; color:var(--muted)}
+  .meta{margin:6px 14px 0; color:#2f7d32; font-weight:600}
+  .price{margin:6px 14px 10px; font-weight:800}
+  .actions{display:flex; gap:8px; padding:12px; margin-top:auto}
+  .btn.small{padding:8px 12px; border-radius:10px}
+  .btn.neutral{background:#f3f3f3; color:#333; box-shadow:none}
+  .btn.neutral:hover{background:#e9e9e9}
+
+  /* Builder */
+  .builder{
+    display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+  }
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
+  }
+  fieldset{border:1px solid var(--border); border-radius:12px; padding:12px; margin:10px 0; background:var(--surface)}
+  legend{font-weight:800; padding:0 6px}
+  label{display:flex; align-items:center; gap:10px; margin:8px 0}
+  input[type="text"], input[type="tel"]{
+    width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; font:inherit; background:#fff
+  }
+  .hint{color:var(--muted); font-size:.95rem}
+  .err{color:#7a1111; background:#fff1f1; border:1px solid #f3c2c2; padding:8px 10px; border-radius:10px; margin:8px 0; display:none}
+  .good{color:#0f5132; background:#ecfdf5; border:1px solid #b7f0d2; padding:8px 10px; border-radius:10px; margin:8px 0; display:none}
+
+  /* Summary */
+  .summary .row{display:flex; justify-content:space-between; margin:6px 0}
+  .summary .total{font-size:1.2rem; font-weight:900}
+  .muted{color:var(--muted)}
+
+  /* Sticky bar */
+  .sticky{
+    position:sticky; bottom:0; background:#fff; border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px rgba(0,0,0,.05); padding:10px 12px; border-bottom-left-radius:var(--radius); border-bottom-right-radius:var(--radius);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .sticky .info{display:flex; gap:12px; align-items:baseline}
+  .sticky .info b{font-size:1.1rem}
+
+  /* Toast aria live */
+  .live{position:fixed; left:50%; transform:translateX(-50%); bottom:18px; background:#111; color:#fff; padding:10px 14px; border-radius:12px; opacity:0; pointer-events:none; transition:.25s}
+  .live.show{opacity:1}
+
+  footer{padding:40px 0; color:var(--muted); text-align:center}
+
+  /* Responsive */
+  @media (max-width: 960px){
+    .hero{grid-template-columns:1fr}
+    .grid{grid-template-columns: repeat(2, 1fr)}
+    .builder{grid-template-columns:1fr}
+  }
+  @media (max-width: 520px){
+    .grid{grid-template-columns:1fr}
+  }
+
+  /* Acessibilidade básica */
+  :focus{outline:3px solid #99d5ff; outline-offset:2px}
+  .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+  .skip:focus{position:static; width:auto; height:auto; padding:8px 10px; background:#000; color:#fff; border-radius:8px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header>
+  <div class="wrap topbar" role="navigation" aria-label="principal">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>Pizzaria Persona</h1>
+    </div>
+    <nav>
+      <a href="#chef">Opções do Chef</a>
+      <a href="#montar">Monte a sua</a>
+      <a href="#resumo">Resumo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h2 id="hero-title">Pizza boa, fluxo claro e preço honesto.</h2>
+      <p>Escolha uma receita do chef ou <b>monte a sua</b> em três passos. O preço atualiza em tempo real e o pedido é rápido — especialmente no celular.</p>
+      <div class="cta">
+        <a class="btn" href="#montar">Montar agora</a>
+        <a class="btn ghost" href="#chef">Ver opções do Chef</a>
+      </div>
+    </div>
+    <img loading="lazy" src="https://images.unsplash.com/photo-1548365328-9f547fb09530?q=80&w=1200&auto=format&fit=crop" alt="Pizza margherita recém saída do forno, com manjericão" />
+  </section>
+
+  <!-- OPÇÕES DO CHEF -->
+  <section id="chef" class="section" aria-labelledby="chef-title">
+    <h3 id="chef-title" class="title">Opções do Chef</h3>
+    <p class="sub">Receitas mais pedidas. Clique em <b>Adicionar</b> para ir direto ao resumo — você pode editar depois.</p>
+    <div class="grid" id="chefGrid">
+      <!-- Cards gerados pelo JS para facilitar manutenção -->
+    </div>
+  </section>
+
+  <!-- CONSTRUTOR -->
+  <section id="montar" class="section" aria-labelledby="montar-title">
+    <h3 id="montar-title" class="title">Monte sua pizza</h3>
+    <p class="sub">Defina tamanho, até <b>2 sabores</b>, complementos e dados de entrega.</p>
+
+    <div class="builder">
+      <!-- painel esquerdo -->
+      <form id="builderForm" class="panel" aria-describedby="form-hint">
+        <p id="form-hint" class="hint">Campos obrigatórios estão marcados com “*”.</p>
+
+        <fieldset>
+          <legend>1) Tamanho *</legend>
+          <label><input type="radio" name="size" value="P" data-price="34" required> P — 25 cm (6 fatias) — R$ 34</label>
+          <label><input type="radio" name="size" value="M" data-price="42"> M — 30 cm (8 fatias) — R$ 42</label>
+          <label><input type="radio" name="size" value="G" data-price="52"> G — 35 cm (10 fatias) — R$ 52</label>
+          <p class="hint">O preço base aparece no resumo e soma complementos.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>2) Sabores (máx. 2) *</legend>
+          <div id="flavorsList">
+            <!-- sabores criados via JS para evitar repetição -->
+          </div>
+          <div id="flavorError" class="err" role="alert" aria-live="assertive"></div>
+          <p class="hint">Se precisar de 1/2, marque dois sabores. O preço não muda por sabor.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>3) Complementos</legend>
+          <label><input type="checkbox" name="extra" value="Borda recheada" data-price="6"> Borda recheada + R$ 6</label>
+          <label><input type="checkbox" name="extra" value="Azeitonas extras" data-price="2"> Azeitonas extras + R$ 2</label>
+          <label><input type="checkbox" name="extra" value="Alho crocante" data-price="2"> Alho crocante + R$ 2</label>
+          <label><input type="checkbox" name="extra" value="Manjericão extra" data-price="0"> Manjericão extra (grátis)</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4) Bebidas</legend>
+          <label><input type="radio" name="drink" value="Sem bebida" data-price="0" checked> Sem bebida</label>
+          <label><input type="radio" name="drink" value="Refrigerante lata" data-price="6"> Refrigerante lata + R$ 6</label>
+          <label><input type="radio" name="drink" value="Suco natural 300 ml" data-price="8"> Suco natural 300 ml + R$ 8</label>
+          <label><input type="radio" name="drink" value="Água sem gás" data-price="4"> Água sem gás + R$ 4</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>5) Entrega *</legend>
+          <label>Nome * <input type="text" id="name" required placeholder="Seu nome"></label>
+          <label>Telefone/WhatsApp * <input type="tel" id="phone" required inputmode="tel" placeholder="(xx) xxxxx-xxxx"></label>
+          <label>Endereço * <input type="text" id="address" required placeholder="Rua, nº, bairro"></label>
+          <div id="formError" class="err" role="alert" aria-live="assertive"></div>
+          <div id="formOk" class="good" aria-live="polite"></div>
+        </fieldset>
+      </form>
+
+      <!-- painel direito: resumo -->
+      <aside class="panel summary" id="resumo" aria-labelledby="resumo-title">
+        <h4 id="resumo-title" style="margin-top:0">Resumo do pedido</h4>
+        <div id="summaryBody">
+          <div class="row"><span class="muted">Tamanho</span><span>—</span></div>
+          <div class="row"><span class="muted">Sabores</span><span>—</span></div>
+          <div class="row"><span class="muted">Complementos</span><span>—</span></div>
+          <div class="row"><span class="muted">Bebida</span><span>Sem bebida</span></div>
+          <hr style="border:none;border-top:1px solid var(--border);margin:10px 0">
+          <div class="row"><span class="muted">Subtotal</span><span id="subtotal">R$ 0,00</span></div>
+          <div class="row"><span class="muted">Entrega</span><span>Grátis</span></div>
+          <div class="row total"><span>Total</span><span id="total">R$ 0,00</span></div>
+        </div>
+
+        <div class="sticky" aria-live="polite">
+          <div class="info">
+            <span class="muted">Total</span> <b id="stickyTotal">R$ 0,00</b>
+          </div>
+          <button class="btn" id="btnFinish">Finalizar pedido</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <small>© Pizzaria Persona • Feito para ensinar UX: claro, acessível e rápido.</small>
+  </div>
+</footer>
+
+<!-- toast aria live -->
+<div class="live" id="live" role="status" aria-live="polite"></div>
+
+<script>
+/* ======== Dados do cardápio ======== */
+const CHEF = [
+  { id:'margherita',  nome:'Margherita Tradizione', preco:42, ingredientes:'Molho pelati, mozzarella de búfala, manjericão, azeite.', img:'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=1200&auto=format&fit=crop' },
+  { id:'calabresa',   nome:'Calabresa Artesanal',    preco:44, ingredientes:'Calabresa curada, cebola roxa, muçarela, orégano.', img:'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop' },
+  { id:'portuguesa',  nome:'Portuguesa da Casa',     preco:46, ingredientes:'Presunto, ovo, cebola, azeitona, ervilha, pimentões.', img:'https://images.unsplash.com/photo-1541745537413-b804d3c4f3e7?q=80&w=1200&auto=format&fit=crop' },
+  { id:'veggie',      nome:'Vegetariana Mediterrânea',preco:48, ingredientes:'Abobrinha, tomate confitado, azeitona preta, feta.', img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop' },
+];
+const SABORES = [
+  'Mussarela','Calabresa','Portuguesa','Frango com catupiry','Vegetariana mediterrânea','Quatro queijos'
+];
+
+/* ======== Helpers ======== */
+const $ = (sel, root=document)=>root.querySelector(sel);
+const $$ = (sel, root=document)=>[...root.querySelectorAll(sel)];
+const money = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function toast(msg){ const el = $('#live'); el.textContent = msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1700); }
+
+/* ======== Monta cards e sabores ======== */
+(function initChef(){
+  const grid = $('#chefGrid');
+  CHEF.forEach(c=>{
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <img class="thumb" loading="lazy" src="${c.img}" alt="${c.nome}">
+      <h3>${c.nome}</h3>
+      <p>${c.ingredientes}</p>
+      <p class="meta">Receita do chef</p>
+      <p class="price">R$ ${c.preco.toFixed(2)}</p>
+      <div class="actions">
+        <button class="btn small neutral" aria-label="Ver ${c.nome}">Detalhes</button>
+        <button class="btn small" data-add="${c.id}">Adicionar</button>
+      </div>`;
+    grid.appendChild(el);
+  });
+  grid.addEventListener('click', e=>{
+    const id = e.target.getAttribute('data-add'); if(!id) return;
+    const card = CHEF.find(x=>x.id===id);
+    // Pré-seleciona tamanho M e dois sabores próximos da receita
+    $('input[name="size"][value="M"]').checked = true;
+    // Limpa sabores
+    $$('#flavorsList input[type="checkbox"]').forEach(c=>c.checked=false);
+    if(id==='margherita'){ checkFlavor('Mussarela', true); }
+    if(id==='calabresa'){ checkFlavor('Calabresa', true); }
+    if(id==='portuguesa'){ checkFlavor('Portuguesa', true); }
+    if(id==='veggie'){ checkFlavor('Vegetariana mediterrânea', true); }
+    // Bebida neutra
+    $('input[name="drink"][value="Sem bebida"]').checked = true;
+    updateSummary();
+    toast(`${card.nome} adicionada ao resumo. Você pode ajustar sabores e complementos.`);
+    document.getElementById('montar').scrollIntoView({behavior:'smooth'});
+  });
+})();
+(function initFlavors(){
+  const box = $('#flavorsList');
+  SABORES.forEach(s=>{
+    const id = 'flv_'+s.toLowerCase().replace(/\s+/g,'_');
+    const el = document.createElement('label');
+    el.innerHTML = `<input type="checkbox" value="${s}" id="${id}"> ${s}`;
+    box.appendChild(el);
+  });
+})();
+
+/* ======== Regras: máx 2 sabores, preço ao vivo, validação ======== */
+const flavorError = $('#flavorError');
+$('#flavorsList').addEventListener('change', e=>{
+  const checks = $$('#flavorsList input[type="checkbox"]');
+  const marked = checks.filter(c=>c.checked);
+  if(marked.length > 2){
+    e.target.checked = false;
+    flavorError.style.display='block';
+    flavorError.textContent = 'Máximo de 2 sabores. Dica: marque dois para “meio a meio”.';
+    setTimeout(()=>flavorError.style.display='none', 1500);
+  }
+  updateSummary();
+});
+$$('input[name="size"], input[name="drink"], input[name="extra"]').forEach(el=>{
+  el.addEventListener('change', updateSummary);
+});
+['name','phone','address'].forEach(id=>$('#'+id).addEventListener('input', ()=>{$('#formError').style.display='none';}));
+
+function checkFlavor(name, val){
+  const c = $(`#flavorsList input[value="${name}"]`);
+  if(c) c.checked = !!val;
+}
+function getFormData(){
+  const size = $('input[name="size"]:checked');
+  const sizePrice = size ? Number(size.dataset.price) : 0;
+  const flavors = $$('#flavorsList input[type="checkbox"]:checked').map(c=>c.value);
+  const extras = $$('input[name="extra"]:checked').map(c=>({name:c.value, price:Number(c.dataset.price)}));
+  const drink = $('input[name="drink"]:checked');
+  const drinkName = drink ? drink.value : 'Sem bebida';
+  const drinkPrice = drink ? Number(drink.dataset.price) : 0;
+  return { size: size?.value, sizePrice, flavors, extras, drink:drinkName, drinkPrice };
+}
+function calcTotal(){
+  const d = getFormData();
+  const extraSum = d.extras.reduce((acc,x)=>acc+x.price,0);
+  const subtotal = d.sizePrice + extraSum + d.drinkPrice;
+  return { subtotal, total: subtotal }; // entrega grátis p/ exemplo
+}
+function updateSummary(){
+  const d = getFormData();
+  const {subtotal, total} = calcTotal();
+  const sum = $('#summaryBody');
+  sum.innerHTML = `
+    <div class="row"><span class="muted">Tamanho</span><span>${d.size ? `${d.size} — ${money(d.sizePrice)}` : '—'}</span></div>
+    <div class="row"><span class="muted">Sabores</span><span>${d.flavors.length? d.flavors.join(', ') : '—'}</span></div>
+    <div class="row"><span class="muted">Complementos</span><span>${d.extras.length? d.extras.map(x=>`${x.name} (${money(x.price)})`).join(', ') : '—'}</span></div>
+    <div class="row"><span class="muted">Bebida</span><span>${d.drink} ${d.drinkPrice? `(${money(d.drinkPrice)})` : ''}</span></div>
+    <hr style="border:none;border-top:1px solid var(--border);margin:10px 0">
+    <div class="row"><span class="muted">Subtotal</span><span id="subtotal">${money(subtotal)}</span></div>
+    <div class="row"><span class="muted">Entrega</span><span>Grátis</span></div>
+    <div class="row total"><span>Total</span><span id="total">${money(total)}</span></div>
+  `;
+  $('#stickyTotal').textContent = money(total);
+}
+updateSummary();
+
+/* ======== Finalizar pedido (validação e feedback claro) ======== */
+$('#btnFinish').addEventListener('click', ()=>{
+  const d = getFormData();
+  const formError = $('#formError'), formOk = $('#formOk');
+  formError.style.display='none'; formOk.style.display='none';
+
+  if(!d.size){ formError.textContent='Escolha um tamanho.'; formError.style.display='block'; return; }
+  if(d.flavors.length===0){ formError.textContent='Escolha ao menos 1 sabor (máx. 2).'; formError.style.display='block'; return; }
+  if(!$('#name').value.trim() || !$('#phone').value.trim() || !$('#address').value.trim()){
+    formError.textContent='Preencha nome, telefone e endereço.'; formError.style.display='block'; return;
+  }
+
+  // Confirmação simulada (sem backend)
+  const { total } = calcTotal();
+  formOk.textContent = `Pedido recebido! Total ${money(total)}. Você receberá confirmação no WhatsApp.`;
+  formOk.style.display='block';
+  toast('Pedido confirmado 🎉 (simulação)');
+  document.getElementById('resumo').scrollIntoView({behavior:'smooth'});
+});
+
+/* Prefill de acessibilidade (opcional para testes) */
+// $('input[name="size"][value="M"]').checked = true;
+// checkFlavor('Mussarela', true);
+// updateSummary();
+</script>
+</body>
+</html>

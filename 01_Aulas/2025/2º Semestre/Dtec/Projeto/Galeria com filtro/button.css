@@ -1,0 +1,22 @@
+ /* Botões de filtro */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0
+        }
+
+        .pill {
+            background: #111827;
+            color: #cbd5e1;
+            border: 1px solid var(--line);
+            padding: 8px 12px;
+            border-radius: 999px;
+            cursor: pointer
+        }
+
+        .pill[aria-pressed="true"] {
+            background: var(--acc);
+            color: #031525;
+            border-color: transparent
+        }

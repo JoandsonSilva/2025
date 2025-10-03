@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  gap: 16px;
+
+  background-color: antiquewhite;
+}
+
+.aside {
+  flex: 0 0 200px;   /* fixa as laterais em ~200px */
+  background-color: beige;
+  height: 90vh;
+}
+
+.content {
+  flex: 1;           /* centro cresce e ocupa o resto */
+  background-color: antiquewhite;
+  height: 90vh;
+}

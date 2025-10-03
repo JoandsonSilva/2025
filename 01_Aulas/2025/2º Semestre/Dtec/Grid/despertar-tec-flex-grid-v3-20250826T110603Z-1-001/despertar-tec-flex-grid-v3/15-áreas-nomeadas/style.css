@@ -1,0 +1,31 @@
+
+.container{
+display: grid;
+gap: 12px;
+grid-template-columns: 200px 1fr ;
+grid-template-rows:  auto 2fr auto;
+height: 80vh;
+grid-template-areas: 
+"header header"
+"sidebar content"
+"footer footer";
+}
+/* Escreva APENAS as regras pedidas no enunciado deste exercício */
+/* DICA: Use as linhas: "header header" / "sidebar content" / "footer footer". */
+
+.area{
+    background-color: aliceblue; border: rgb(133, 189, 253) 1px solid;
+
+}
+.header{
+    grid-area: header;
+}
+.sidebar{
+    grid-area: sidebar;
+}
+.content{
+    grid-area: content;
+}
+.footer{
+    grid-area: footer;
+}

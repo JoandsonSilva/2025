@@ -1,0 +1,16 @@
+.card {
+  border:1px solid #ddd;
+  border-radius:3px;
+  padding:5px;
+  font-size:10px; /* textos muito pequenos */
+}
+.card img {
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+.preco {
+  color:#bbb; /* quase invisível */
+  font-size:11px;
+  font-weight: ;
+}
