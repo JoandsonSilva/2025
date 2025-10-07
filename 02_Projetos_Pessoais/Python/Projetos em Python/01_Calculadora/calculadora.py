@@ -25,4 +25,5 @@ while True:
     else:
         print('Operação não reconhecida!')
         
-    print('{} {} {} = {.:}'.format(num1, op, num2, result))
+    # Exibe o cálculo realizado de forma legível
+    print(f"{num1} {op} {num2} = {result}")
