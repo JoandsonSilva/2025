@@ -1,6 +1,6 @@
 
 import './App.css'
-import { FormularioDeEvento } from "./assets/componentes/FormularioDeEvento";
+import { FormularioDeEvento } from './assets/componentes/FormularioDeEvento'
 
 //No react, componentes são FUNÇÕES
 
@@ -15,7 +15,8 @@ function App() {
       <section>
         <img src="/banner.png" alt="Banner principal" />
       </section>
-      <FormularioDeEvento></FormularioDeEvento>
+      <FormularioDeEvento/>
+      
     </main>
   )
 }
